@@ -57,7 +57,7 @@ section,header,footer{overflow-x:clip}
 img{display:block;max-width:100%}
 h1,h2,h3{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:.04em}
 p{margin:0}
-button{font:inherit;cursor:pointer;color:inherit}
+button{font:inherit;cursor:pointer;color:inherit;touch-action:manipulation}
 button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .in{max-width:620px;margin:0 auto;padding-left:max(22px, env(safe-area-inset-left, 0px));padding-right:max(22px, env(safe-area-inset-right, 0px))}
 .sec{padding-block:64px}
@@ -201,7 +201,10 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .station{position:relative;width:100%;aspect-ratio:4/5;max-height:86svh;overflow:hidden;background:#0b0a10;isolation:isolate}
 .st-scene{position:absolute;inset:0}
 .st-scene img{width:100%;height:100%;object-fit:cover;display:block}
-.st-wall img{object-position:50% 55%;filter:sepia(.22) saturate(.85) brightness(.84) contrast(1.06);transform-origin:45% 68%;transition:transform 1.5s cubic-bezier(.55,0,.85,.35),filter 1.5s ease}
+.st-wall img{object-position:50% 55%;filter:sepia(.22) saturate(.85) brightness(.84) contrast(1.06);transform-origin:45% 68%;transition:transform 1.5s cubic-bezier(.55,0,.85,.35)}
+.station.run .st-wall img{will-change:transform}
+.st-glare{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at 45% 68%,rgba(255,240,205,.85),rgba(246,197,106,.35) 35%,rgba(246,197,106,0) 70%);opacity:0;transition:opacity 1.2s ease .2s}
+.station.run .st-glare{opacity:1}
 .station::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 52%,rgba(11,10,16,.7)),linear-gradient(180deg,rgba(15,12,20,.6),transparent 16%,transparent 72%,rgba(15,12,20,.95))}
 .st-after{opacity:0;transition:opacity 1s ease}
 .st-after img{object-position:50% 45%;transform:scale(1.14);transition:transform 6s ease-out}
@@ -218,10 +221,10 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 @keyframes stsmoke{from{transform:translateX(-6%) scale(1)}to{transform:translateX(10%) scale(1.15)}}
 .st-portal{position:absolute;left:45%;top:68%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;z-index:2;background:radial-gradient(circle,rgba(255,236,190,.95),rgba(246,197,106,.5) 40%,transparent 70%);opacity:0;transform:scale(0);transition:transform 1.3s cubic-bezier(.6,0,.9,.4),opacity .6s ease}
 .station.run .st-portal{opacity:1;transform:scale(42)}
-.station.run .st-wall img{transform:scale(3.4);filter:sepia(.2) saturate(.8) brightness(1.3) contrast(1) blur(5px)}
+.station.run .st-wall img{transform:scale(3.4)}
 .st-flash{position:absolute;inset:0;z-index:5;background:radial-gradient(circle at 45% 68%,#fff8e6,#f6dca0 60%,#e9c27a);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .station.flash .st-flash{opacity:1}
-.st-btn{position:absolute;left:50%;bottom:30px;z-index:6;transform:translateX(-50%);background:rgba(15,12,20,.72);white-space:nowrap;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:opacity .4s ease}
+.st-btn{position:absolute;left:50%;bottom:30px;z-index:6;transform:translateX(-50%);letter-spacing:.08em;padding:13px 18px;background:rgba(15,12,20,.72);white-space:nowrap;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:opacity .4s ease}
 .station.run .st-btn{opacity:0;pointer-events:none}
 #ticketWrap{margin-top:-44px;position:relative;z-index:2}
 
@@ -401,6 +404,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .msg-pill .av{position:relative;width:44px;height:44px;border-radius:50%;background:#222 url("img/baykus-avatar.jpg") 40% 40%/cover;flex-shrink:0;border:2px solid var(--gold)}
 .msg-pill .av::after{content:"1";position:absolute;top:-4px;right:-4px;min-width:19px;height:19px;border-radius:10px;background:var(--wax);color:#fff;font-family:var(--display);font-size:11px;font-weight:700;display:grid;place-items:center;border:2px solid #efe1c2}
 .msg-pill.read .av::after{display:none}
+.msg-pill > span:not(.av){max-width:230px;overflow:hidden;white-space:nowrap;transition:max-width .45s ease,opacity .3s ease}
+.msg-pill.mini{padding:6px;gap:0}
+.msg-pill.mini > span:not(.av){max-width:0;opacity:0}
 .msg-pill b{display:block;font-family:var(--display);font-size:12.5px;font-weight:700;letter-spacing:.06em;line-height:1.2}
 .msg-pill span{display:block;font-style:italic;font-size:15px;color:var(--ink-soft);line-height:1.25}
 .msg-pill.ping{animation:ping 2.4s ease-in-out infinite}
@@ -598,10 +604,11 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     <p class="lede">9 ile 10 numaralı peronların arasında bir duvar var. Duvara doğru yürü. Gerginsen biraz koşarak geç, en iyisi bu.</p>
   </div>
   <div class="station" id="station">
-    <div class="st-scene st-wall"><img src="img/peron-934.jpg" alt="King's Cross istasyonunda Peron 9¾ tabelası ve duvara giren bagaj arabası" loading="lazy"></div>
-    <div class="st-scene st-after"><img src="img/hogwarts-ekspresi.jpg" alt="Buharlar içinde ilerleyen Hogwarts Ekspresi" loading="lazy"><p class="st-cap">Geçtin. Hogwarts Ekspresi seni bekliyor.</p></div>
+    <div class="st-scene st-wall"><img id="wallImg" src="img/peron-934.jpg" alt="King's Cross istasyonunda Peron 9¾ tabelası ve duvara giren bagaj arabası" loading="eager" decoding="async"></div>
+    <div class="st-scene st-after"><img id="trainImg" src="img/hogwarts-ekspresi.jpg" alt="Buharlar içinde ilerleyen Hogwarts Ekspresi" loading="eager" decoding="async"><p class="st-cap">Geçtin. Hogwarts Ekspresi seni bekliyor.</p></div>
     <div class="st-steam" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="st-portal" aria-hidden="true"></div>
+    <div class="st-glare" aria-hidden="true"></div>
     <div class="st-flash" aria-hidden="true"></div>
     <button class="btn gold st-btn" id="wallBtn">Duvara doğru koş</button>
   </div>
@@ -1016,8 +1023,11 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     st.classList.add('run');
     if(calm){ st.classList.add('passed'); $('ticketWrap').hidden = false; return; }
     buzz([15, 60, 20]);
+    const train = $('trainImg');
+    const ready = (train.complete && train.naturalWidth) ? Promise.resolve() : new Promise(r => { train.addEventListener('load', r, {once:true}); train.addEventListener('error', r, {once:true}); });
     await wait(1150); st.classList.add('flash');
-    await wait(380); st.classList.add('passed');
+    await Promise.race([Promise.all([ready, wait(380)]), wait(4000)]);
+    st.classList.add('passed');
     await wait(140); st.classList.remove('flash');
     $('ticketWrap').hidden = false;
   });
@@ -1579,10 +1589,32 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   ];
   const pill = $('msgPill'), sheet = $('msgSheet'), body = $('msgBody');
   let played = false;
+  let pillBig = true, pillRisk = false, pillLast = 0, pillTrail = null;
+  function pillSize(){ pill.classList.toggle('mini', !pillBig || pillRisk); }
+  const GUARDED = ['wallBtn','tear','hatBtn','mapOpen','mapClose','frogBtn','beanBtn','yes','no','patBtn','alwaysBtn','spell'];
+  function pillCheck(){
+    if(pill.hidden) return;
+    const zoneL = innerWidth - 16 - 230, zoneT = innerHeight - 18 - 64 - 14;
+    pillRisk = GUARDED.some(id => {
+      const b = $(id); if(!b || b.hidden || b.disabled || !b.offsetParent) return false;
+      const r = b.getBoundingClientRect();
+      return r.bottom > zoneT && r.top < innerHeight && r.right > zoneL && r.left < innerWidth && r.width > 0;
+    }) || !!document.querySelector('#pitch:not(.caught)') && (() => { const r = $('pitch').getBoundingClientRect(); return r.bottom > zoneT && r.top < innerHeight; })();
+    pillSize();
+  }
+  function pillOnScroll(){
+    const now = performance.now();
+    if(now - pillLast > 80){ pillLast = now; pillCheck(); }
+    clearTimeout(pillTrail); pillTrail = setTimeout(pillCheck, 120);
+  }
+  addEventListener('scroll', pillOnScroll, {passive:true});
+  addEventListener('resize', pillOnScroll);
   function showPill(){
     if(!pill.hidden) return;
     pill.hidden = false;
     requestAnimationFrame(() => requestAnimationFrame(() => { pill.classList.add('in'); setTimeout(() => pill.classList.add('ping'), 700); }));
+    pillCheck();
+    setTimeout(() => { pillBig = false; pillSize(); }, 9000);
   }
   async function openMsg(){
     sheet.hidden = false; document.documentElement.style.overflow = 'hidden';
