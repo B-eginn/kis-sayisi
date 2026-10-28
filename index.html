@@ -86,13 +86,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .cover-top .eyebrow{color:var(--gold-hi)}
 .stage{position:relative;width:100%;max-width:440px;padding-left:max(18px, env(safe-area-inset-left, 0px));padding-right:max(18px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;align-items:center;gap:22px}
 .envelope{position:relative;width:100%;aspect-ratio:1.5;max-width:100%;background:#e6d5ae url("img/parsomen.jpg") center/cover;border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.6),inset 0 0 40px rgba(110,75,30,.35);color:var(--ink);transition:transform .8s cubic-bezier(.5,0,.3,1),opacity .6s ease}
-.envelope::before{content:"";position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(to bottom right,transparent 49.6%,rgba(90,60,25,.25) 50%,transparent 50.6%),linear-gradient(to bottom left,transparent 49.6%,rgba(90,60,25,.25) 50%,transparent 50.6%);background-size:50% 100%;background-position:left,right;background-repeat:no-repeat}
-.address{position:absolute;left:9%;right:9%;bottom:10%;font-size:clamp(14px,4.2vw,18px);line-height:1.35;font-style:italic;color:#3b2716}
+.envelope::before{content:"";position:absolute;left:0;right:0;top:0;height:40%;background:linear-gradient(to bottom right,transparent 49.6%,rgba(90,60,25,.25) 50%,transparent 50.6%),linear-gradient(to bottom left,transparent 49.6%,rgba(90,60,25,.25) 50%,transparent 50.6%);background-size:50% 100%;background-position:left,right;background-repeat:no-repeat}
+.address{position:absolute;left:8%;right:8%;bottom:7%;font-size:clamp(14px,4.1vw,18px);line-height:1.35;font-style:italic;color:#3b2716}
 .address b{display:block;font-family:var(--hand);font-style:normal;font-weight:400;font-size:clamp(28px,8.5vw,40px);line-height:1;margin-bottom:4px;color:#2a1a0e}
-.stamp-mark{position:absolute;right:7%;top:9%;width:54px;height:62px;border:2px dashed rgba(124,20,36,.55);display:grid;place-items:center;text-align:center;font-family:var(--display);font-size:8px;letter-spacing:.1em;color:rgba(124,20,36,.8);line-height:1.3;padding:4px;transform:rotate(4deg)}
-.seal{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:0;padding:0;
+.stamp-mark{position:absolute;right:6%;top:8%;width:clamp(42px,12vw,54px);height:clamp(50px,14vw,62px);border:2px dashed rgba(124,20,36,.55);display:grid;place-items:center;text-align:center;font-family:var(--display);font-size:8px;letter-spacing:.1em;color:rgba(124,20,36,.8);line-height:1.3;padding:4px;transform:rotate(4deg)}
+.seal{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:clamp(58px,17vw,76px);height:clamp(58px,17vw,76px);border-radius:50%;border:0;padding:0;
   background:radial-gradient(circle at 35% 30%,#b23040,var(--wax) 55%,#4e0a15);box-shadow:0 4px 10px rgba(0,0,0,.45),inset 0 -4px 8px rgba(0,0,0,.35),inset 0 3px 6px rgba(255,255,255,.18);
-  display:grid;place-items:center;color:#f0c9b0;font-family:var(--display);font-weight:700;font-size:30px;text-shadow:0 1px 1px rgba(0,0,0,.5)}
+  display:grid;place-items:center;color:#f0c9b0;font-family:var(--display);font-weight:700;font-size:clamp(24px,7vw,30px);text-shadow:0 1px 1px rgba(0,0,0,.5)}
 .seal::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1.5px solid rgba(240,201,176,.45)}
 .seal.pulse{animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 4px 10px rgba(0,0,0,.45),0 0 0 0 rgba(246,197,106,.5),inset 0 -4px 8px rgba(0,0,0,.35)}50%{box-shadow:0 4px 10px rgba(0,0,0,.45),0 0 0 14px rgba(246,197,106,0),inset 0 -4px 8px rgba(0,0,0,.35)}}
@@ -321,8 +321,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       <div class="address">
         <b>Lina</b>
         21 numaralı koltuk, cam kenarı<br>
-        Tarsus–Nevşehir otobüsü<br>
-        Toroslar üzeri
+        Tarsus–Nevşehir otobüsü
       </div>
       <button class="seal pulse" id="seal" aria-label="Mührü kır ve mektubu aç">B</button>
     </div>
