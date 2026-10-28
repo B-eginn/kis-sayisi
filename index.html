@@ -12,14 +12,14 @@
 <meta property="og:title" content="Lina'ya baykuş postası">
 <meta property="og:description" content="Hogwarts'tan bir mektubun var. Mührü kır.">
 <meta property="og:url" content="https://b-eginn.github.io/kis-sayisi/">
-<meta property="og:image" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=3">
-<meta property="og:image:secure_url" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=3">
+<meta property="og:image" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=4">
+<meta property="og:image:secure_url" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=4">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mühürlü bir Hogwarts mektubu: Lina, 21 numaralı koltuk">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=3">
+<meta name="twitter:image" content="https://b-eginn.github.io/kis-sayisi/img/onizleme.jpg?v=4">
 <title>Lina'ya Baykuş Postası</title>
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,7 +201,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .paper > *{position:relative}
 .np{padding-block:40px 56px}
 .np-mast{text-align:center;border-bottom:3px double #1b1814;padding-bottom:6px}
-.np-mast .ttl{font-family:var(--goth);font-weight:800;font-size:clamp(46px,14vw,78px);line-height:.95}
+.np-mast .ttl{font-family:var(--goth);font-weight:800;font-size:clamp(34px,10vw,70px);line-height:1;white-space:nowrap}
 .np-line{display:flex;justify-content:space-between;gap:8px;font-family:var(--display);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #1b1814;padding:6px 0;margin-bottom:18px}
 .np-head{font-family:var(--display);font-weight:900;font-size:clamp(25px,7.2vw,38px);line-height:1.05;text-align:center;letter-spacing:.01em}
 .np-sub{font-style:italic;font-size:19px;text-align:center;margin:10px auto 18px;max-width:34ch}
@@ -349,6 +349,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 #stars{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.6s ease;pointer-events:none}
 .finale.dark{background:#05040a}
 .finale.dark #stars{opacity:1}
+.mm{font-style:italic;font-size:19px;opacity:.75;margin-top:4px}
 .spell{font-family:var(--display);font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:13px;background:transparent;border:1px solid var(--gold);color:var(--gold-hi);padding:12px 26px;border-radius:999px}
 .foot{font-family:var(--display);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.8;margin-top:30px}
 
@@ -437,13 +438,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
   <div class="stage" id="stage">
     <p class="hp-name" id="hpName">Lina</p>
-    <p class="cover-sub" id="coverSub">Bir mektubun var.</p>
+    <p class="cover-sub" id="coverSub" lang="en">Yer a witch, Lina.</p>
     <div class="envelope" id="envelope">
       <span class="no-stamp">Pulsuz. Baykuşla teslim edilmiştir.</span>
       <div class="address">
-        <b>Lina</b>
-        21 numaralı koltuk, cam kenarı<br>
-        Tarsus–Nevşehir otobüsü
+        <b>Miss Lina</b>
+        <span lang="en">The Window Seat, No. 21<br>
+        The Tarsus–Nevşehir Coach</span>
       </div>
       <button class="seal pulse" id="seal" aria-label="Mührü kır ve mektubu aç">H</button>
     </div>
@@ -452,11 +453,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
     <article class="letter" id="letter" hidden>
       <div class="crest">
         <span class="hw">Hogwarts</span>
-        <span class="school">CADILIK VE BÜYÜCÜLÜK OKULU</span>
-        <span class="head">Müdür: Albus Dumbledore</span>
+        <span class="school" lang="en">SCHOOL of WITCHCRAFT and WIZARDRY</span>
+        <span class="head" lang="en">Headmaster: Albus Dumbledore</span>
       </div>
-      <p>Sayın Lina,</p>
-      <p>Hogwarts Ekspresi'nin 29 Ekim Perşembe 12:30 seferine kabul edildiğinizi bildirmekten mutluluk duyarız. 21 numaralı cam kenarı koltuğunuz sizin için ayrılmıştır.</p>
+      <p lang="en">Dear Lina,</p>
+      <p lang="en">We are pleased to inform you that you have a place on the Hogwarts Express.</p>
+      <p>Ekspres, 29 Ekim Perşembe 12:30'da Tarsus'taki Peron 9¾'ten kalkacaktır. 21 numaralı cam kenarı koltuğunuz sizin için ayrılmıştır.</p>
       <p><i>Gerekli malzemeler:</i></p>
       <ul>
         <li>Bir valiz</li>
@@ -464,14 +466,14 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
         <li>Kulaklık ve iyi bir şarkı listesi</li>
         <li>Bu mektup</li>
       </ul>
-      <p style="font-size:17px;font-style:italic">Öğrenciler yanlarında bir baykuş, bir kedi ya da bir kurbağa getirebilir.</p>
+      <p style="font-size:17px;font-style:italic" lang="en">Students may also bring an owl OR a cat OR a toad.</p>
       <p class="q">Yola çıkmadan önce tek bir kural var. Kemerini taktın mı?</p>
       <div class="row" id="gateBtns">
         <button class="btn" id="passenger">Taktım</button>
         <button class="btn ghost" id="driver">Takmadım</button>
       </div>
       <p class="warn" id="driverMsg" hidden>Biliyordum. Önce kemer, sonra büyü. Bekliyorum.</p>
-      <div><p class="sig">Batuhan</p><p class="role">Müdür Yardımcısı Minerva McGonagall adına</p></div>
+      <div lang="en"><p style="font-style:italic;font-size:17px">Yours sincerely,</p><p class="sig">Batuhan</p><p class="role">on behalf of Minerva McGonagall, Deputy Headmistress</p></div>
     </article>
   </div>
 </header>
@@ -496,22 +498,22 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   <div class="train-photo"><img src="img/hogwarts-ekspresi.jpg" alt="Glenfinnan viyadüğünden geçen buharlı tren" loading="lazy"><span class="credit">Glenfinnan viyadüğü · Fotoğraf: Joss Broward / Unsplash</span></div>
   <div class="in sec" style="padding-top:36px">
     <p class="eyebrow">King's Cross değil, Tarsus</p>
-    <h2 class="title">Peron 9¾</h2>
-    <p class="lede">9 ile 10 numaralı peronların arasında bir duvar var. Duvara doğru yürü. Gerginsen biraz koşarak.</p>
+    <h2 class="title" lang="en">Platform 9¾</h2>
+    <p class="lede">9 ile 10 numaralı peronların arasında bir duvar var. Duvara doğru yürü. <span lang="en">“Best do it at a bit of a run if you're nervous.”</span></p>
     <div class="platform-area" id="platformArea">
       <div id="ticketWrap" hidden>
-        <article class="ticket" aria-label="Hogwarts Ekspresi bileti">
+        <article class="ticket" aria-label="Hogwarts Express bileti">
           <div class="t-head">
-            <p class="k1">TEK YÖN · BİRİNCİ SINIF</p>
+            <p class="k1" lang="en">ONE WAY · FIRST CLASS</p>
             <p class="hw">Hogwarts</p>
-            <p class="k2">EKSPRESİ</p>
+            <p class="k2" lang="en">EXPRESS</p>
           </div>
           <div class="t-main">
             <div class="t-route">
               <div class="c">TARSUS<small>Mersin</small></div><span class="line"></span>
               <div class="c" style="text-align:right">NEVŞEHİR<small>Kapadokya</small></div>
             </div>
-            <div class="platform"><span>Peron</span><b>9¾</b></div>
+            <div class="platform" lang="en"><span>Platform</span><b>9¾</b></div>
             <div class="t-fields">
               <div><div class="k">Tarih</div><div class="v">Perşembe, 29 Ekim</div></div>
               <div><div class="k">Kalkış</div><div class="v">12:30</div></div>
@@ -519,7 +521,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
               <div><div class="k">Bagaj</div><div class="v">1 valiz, bolca sevgi</div></div>
               <div class="wide"><div class="k">Yolcu notu</div><div class="v" style="font-weight:500">21 numara, cam kenarı. Çok iyi seçim. Karlı vadilere bakarken bil ki birisi seni çok seviyor ve iyi ki varsın diyor.</div></div>
             </div>
-            <p class="t-note">Not: Hogwarts Ekspresi normalde 11:00'de kalkar. Senin için 12:30'a çekildi.</p>
+            <p class="t-note">Not: Hogwarts Express normalde saat 11:00'de kalkar. Senin için 12:30'a çekildi.</p>
           </div>
           <div class="t-stub" id="stub">
             <div><div class="k">Koçan</div><div class="v">Koltuk 21</div></div>
@@ -529,7 +531,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
         </article>
       </div>
       <div class="wall" id="wall">
-        <div class="sign-plate"><span>PERON</span><b>9¾</b></div>
+        <div class="sign-plate" lang="en"><span>PLATFORM</span><b>9¾</b></div>
         <button class="btn gold wall-btn" id="wallBtn" style="background:rgba(20,15,10,.7)">Duvara doğru koş</button>
       </div>
     </div>
@@ -538,7 +540,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
 <section class="paper" id="gazete">
   <div class="in np">
-    <div class="np-mast"><p class="ttl">Gelecek Postası</p></div>
+    <div class="np-mast"><p class="ttl" lang="en">The Daily Prophet</p></div>
     <div class="np-line"><span>Perşembe, 29 Ekim</span><span>Özel baskı</span><span>Fiyatı: 5 Knut</span></div>
     <h2 class="np-head">TARSUS–NEVŞEHİR HATTINDA OLAĞANÜSTÜ GÜZELLİK</h2>
     <p class="np-sub">Yolcular camdan dışarı bakmayı unuttu. Büyü Bakanlığı inceleme başlattı.</p>
@@ -555,7 +557,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       <h3>İlanlar</h3>
       <p><b>KAYIP:</b> Bir kalp. Son görüldüğü yer 21 numaralı koltuk. Bulan sahibine iade etmesin, orada kalsın.</p>
       <p><b>SATILIK:</b> Hiç kullanılmamış "Hayır" butonu. Sahibi istifa etti. Detaylar kehanet sayfasında.</p>
-      <p><b>ARANIYOR:</b> Nevşehir'de sıcak bir bal birası içecek güzel bir yolcu. Başvuru gerekmez, zaten bulundu.</p>
+      <p><b>ARANIYOR:</b> Nevşehir'de sıcak bir butterbeer içecek güzel bir yolcu. Başvuru gerekmez, zaten bulundu.</p>
     </div>
   </div>
 </section>
@@ -563,7 +565,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 <section class="night sec" id="sapka">
   <div class="in center">
     <p class="eyebrow">Büyük Salon</p>
-    <h2 class="title">Seçmen Şapka</h2>
+    <h2 class="title" lang="en">The Sorting Hat</h2>
     <p class="lede">Hogwarts'ta herkes bir binaya yerleştirilir. Şapkayı tak, bakalım seni nereye yerleştirecek.</p>
     <div class="hat-stage">
       <svg class="hat" id="hat" viewBox="0 0 200 200" aria-hidden="true">
@@ -595,12 +597,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 <section class="parch sec" id="harita">
   <div class="in">
     <p class="eyebrow">Canlı · Tahmini</p>
-    <h2 class="title">Çapulcu Haritası</h2>
+    <h2 class="title" lang="en">The Marauder's Map</h2>
     <p class="lede">Bu harita Hogwarts'taki herkesin nerede olduğunu gösterir. Bugünlük sadece seni. Otobüsün saatine bakarak tahmin ediyor.</p>
     <div class="map-wrap" id="mapWrap">
       <svg viewBox="0 0 360 460" id="mapSvg" role="img" aria-label="Tarsus'tan Nevşehir'e tahmini konum haritası">
-        <text x="180" y="26" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="12" fill="#5a4330">Bay Aylak, Kılkuyruk, Patiayak ve Çatalak gururla sunar</text>
-        <text x="180" y="48" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="17" letter-spacing="3" fill="#7c1424">ÇAPULCU HARİTASI</text>
+        <text x="180" y="20" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="12" fill="#5a4330">Messrs Moony, Wormtail, Padfoot and Prongs</text>
+        <text x="180" y="35" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="12" fill="#5a4330">are proud to present</text>
+        <text x="180" y="58" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="17" letter-spacing="3" fill="#7c1424">THE MARAUDER'S MAP</text>
         <g fill="none" stroke="#6a5440" stroke-width="1" opacity=".35">
           <path d="M20 420c40-10 60 8 90-6M250 440c30-6 50 4 90-8M30 110c30 10 50-6 80 4M260 80c20 8 40-4 70 2"/>
           <path d="M40 270l14-22 14 22M62 270l12-18 12 18M260 320l14-24 14 24M282 320l12-18 12 18M90 190l12-20 12 20M240 220l12-20 12 20"/>
@@ -619,15 +622,15 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       </svg>
       <div class="map-cover" id="mapCover">
         <p>Boş bir parşömen. Asanı dokundur ve yemin et.</p>
-        <button class="btn" id="mapOpen">Kötülük peşinde olduğuma ciddiyetle yemin ederim</button>
+        <button class="btn" id="mapOpen" lang="en">I solemnly swear that I am up to no good.</button>
       </div>
     </div>
     <p class="map-status" id="mapStatus" aria-live="polite">Yemin et, harita sana nerede olduğunu söylesin.</p>
-    <button class="btn ghost map-close" id="mapClose" hidden>Fesat tamam</button>
+    <button class="btn ghost map-close" id="mapClose" hidden lang="en">Mischief managed.</button>
     <div class="stops" id="stopList">
       <div class="stop" data-i="0"><span class="km">KM 0</span><div><b>Tarsus, 12:30</b><p>Otobüs kalkarken bil ki arkanda seni seven biri var. Yolun açık olsun.</p></div></div>
       <div class="stop" data-i="1"><span class="km">KM 60</span><div><b>Toroslar</b><p>Virajlar başlıyor. Kulaklıkta güzel bir şarkı, camda karlı dağlar. Tadını çıkar.</p></div></div>
-      <div class="stop" data-i="2"><span class="km">KM 165</span><div><b>Niğde</b><p>Mola. Sıcak bir çay iç, biraz yürü. Bal birası yok ama çay da iş görür.</p></div></div>
+      <div class="stop" data-i="2"><span class="km">KM 165</span><div><b>Niğde</b><p>Mola. Sıcak bir çay iç, biraz yürü. Butterbeer yok ama çay da iş görür.</p></div></div>
       <div class="stop" data-i="3"><span class="km">KM 250</span><div><b>Nevşehir</b><p>Kapadokya'nın Hogsmeade'i. Karlı vadiler, peri bacaları, kardeşin. İyi ki varsın.</p></div></div>
     </div>
   </div>
@@ -635,12 +638,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
 <section class="frog-sec sec" id="kurbaga">
   <div class="in center">
-    <p class="eyebrow">Hogwarts Ekspresi büfesi</p>
-    <h2 class="title">Çikolata Kurbağa</h2>
+    <p class="eyebrow">Trendeki büfe arabası</p>
+    <h2 class="title" lang="en">Chocolate Frogs</h2>
     <p class="lede">Her kutudan bir ünlü cadı ya da büyücü kartı çıkar. Dikkat et, kurbağa zıplar.</p>
     <div class="frog-stage" id="frogStage">
       <div class="box" id="frogBox">
-        <div class="face"><b>ÇİKOLATA KURBAĞA</b><span>Ünlü Cadılar ve Büyücüler kartı içerir</span></div>
+        <div class="face" lang="en"><b>CHOCOLATE FROG</b><span>With a Famous Witches and Wizards card inside</span></div>
         <div class="rim"></div>
       </div>
       <svg class="frog" id="frog" viewBox="0 0 80 60" aria-hidden="true">
@@ -655,13 +658,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       <div id="cardWrap" hidden class="center">
         <div class="card">
           <div class="card-in">
-            <p class="top">ÜNLÜ CADILAR VE BÜYÜCÜLER</p>
+            <p class="top" lang="en">FAMOUS WITCHES AND WIZARDS</p>
             <div class="card-pic" id="cardPic">
               <img class="alive" src="img/lina-3.jpg" alt="Lina kartı" style="--o:62% 40%;--d:8s">
               <p class="gone-note">Kartındaki kişi bir dakikalığına çerçeveden çıktı. Birazdan döner.</p>
             </div>
             <p class="card-name">Lina</p>
-            <p class="card-rare">NADİRLİK: TEK KOPYA</p>
+            <p class="card-rare" lang="en">RARITY: ONE OF A KIND</p>
           </div>
         </div>
         <p class="card-desc">Tarsus'tan Nevşehir'e giden en güzel yolcu. Gülüşüyle bulunduğu yeri Lumos'a gerek kalmadan aydınlatmasıyla tanınır. En bilinen başarısı: Batuhan'ın kalbine çok derin yerleşmek.</p>
@@ -672,8 +675,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
 <section class="parch sec" id="fasulye">
   <div class="in">
-    <p class="eyebrow">Hogwarts Ekspresi büfesi</p>
-    <h2 class="title">Bertie Bott'un Her Çeşit Fasulyesi</h2>
+    <p class="eyebrow">Trendeki büfe arabası</p>
+    <h2 class="title" lang="en">Bertie Bott's Every Flavour Beans</h2>
     <p class="lede">Bisküvi sevdiğini biliyoruz, kanıtı aşağıda. Ama bugün menüde Bertie Bott var. Şansını dene.</p>
     <div class="bean-grid">
       <div class="polaroid"><div class="pic"><img class="alive" src="img/lina-2.jpg" alt="Bisküvili masa başında yolcu" style="--o:55% 40%;--d:10s"></div><span>Kanıt: bisküvi</span></div>
@@ -682,8 +685,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
         <path d="M30 28h80c10 0 16 8 16 18v104c0 14-10 24-24 24H38c-14 0-24-10-24-24V46c0-10 6-18 16-18z" fill="rgba(255,255,255,.35)" stroke="#2d1f14" stroke-width="2"/>
         <g id="jarBeans"></g>
         <rect x="30" y="80" width="80" height="40" rx="3" fill="#f3e6c8" stroke="#2d1f14" stroke-width="1"/>
-        <text x="70" y="96" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="9" fill="#7c1424">BERTIE BOTT</text>
-        <text x="70" y="110" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#2d1f14">Her çeşit fasulye</text>
+        <text x="70" y="96" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="9" fill="#7c1424">BERTIE BOTT'S</text>
+        <text x="70" y="110" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#2d1f14">Every Flavour Beans</text>
       </svg>
     </div>
     <div class="bean-out" id="beanOut" aria-live="polite">
@@ -762,9 +765,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
 <section class="night sec" id="yemin">
   <div class="in">
-    <p class="eyebrow">Bozulmaz Yemin</p>
-    <h2 class="title">Bu yemin bozulmaz</h2>
-    <p class="lede">Adı üstünde. Mühürleri kaldırmayı deneyebilirsin. Deneyebilirsin.</p>
+    <p class="eyebrow">Ateşten iplikler</p>
+    <h2 class="title" lang="en">The Unbreakable Vow</h2>
+    <p class="lede">Adı üstünde, bozulmaz. Mühürleri kaldırmayı deneyebilirsin. Deneyebilirsin.</p>
     <div class="vow-threads" aria-hidden="true"></div>
     <div class="vow">
       <label class="term"><input type="checkbox" id="t1" checked><span>Bu sayfayı okuyan kişinin çok sevildiğini kabul ediyorum.<em></em></span></label>
@@ -784,7 +787,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
     <p class="eyebrow">Varış</p>
     <h2 class="title">Kapadokya'nın Hogsmeade'i</h2>
     <div class="cols">
-      <p>Karla kaplı tepeler, sıcak ışıklar, buz gibi hava. Hogsmeade'de olsan Üç Süpürge'de bir bal birası içerdin. Nevşehir'de sıcak bir çay da olur. Hiçbir manzara senin kadar güzel değil ama.</p>
+      <p>Karla kaplı tepeler, sıcak ışıklar, buz gibi hava. Hogsmeade'de olsan Three Broomsticks'te bir butterbeer içerdin. Nevşehir'de sıcak bir çay da olur. Hiçbir manzara senin kadar güzel değil ama.</p>
       <p>Yanına kalın bir şey al, üşüme. Kardeşine sıkıca sarıl. Kendine iyi bak, çünkü sen çok değerlisin ve bunu bilmeni istiyorum.</p>
     </div>
   </div>
@@ -792,7 +795,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
 <section class="patronus sec" id="patronus">
   <div class="in">
-    <p class="eyebrow" style="color:#b9cdfa">Karanlık Sanatlara Karşı Savunma</p>
+    <p class="eyebrow" style="color:#b9cdfa" lang="en">Defence Against the Dark Arts</p>
     <h2 class="title">Patronus</h2>
     <p class="lede" style="margin-inline:auto">Patronus, onu çağıranın en mutlu anısından doğar. Benimkini çağırıyorum.</p>
     <canvas id="patCanvas" aria-hidden="true"></canvas>
@@ -811,9 +814,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   </div>
   <div class="in">
     <p class="eyebrow">Son sayfa</p>
-    <p class="after">Bunca zamandan sonra?</p>
+    <p class="after" lang="en">After all this time?</p>
     <button class="spell" id="alwaysBtn">Cevapla</button>
-    <p class="always" id="always" hidden>Her zaman.</p>
+    <p class="always" id="always" hidden lang="en">Always.</p>
     <div id="noxArea" hidden style="display:flex;flex-direction:column;align-items:center;gap:16px">
       <p class="body" id="finaleText">Okuduğun için teşekkürler. Işıkları sen söndür.</p>
       <button class="spell" id="spell">Nox</button>
@@ -822,6 +825,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       <p class="big">İyi yolculuklar</p>
       <p class="body">İyi ki varsın, iyi ki tanıdım. Seni seviyorum.</p>
       <p class="sign">Batuhan</p>
+      <p class="mm" lang="en">Mischief managed.</p>
     </div>
     <p class="foot">Fotoğraflar: Joss Broward, Erik Karits, Kevin Mueller, Mike Labrum, Safwan Thottoli, Shamoil, Igor Sporynin / Unsplash<br>Harry P yazı tipi: GM, hayran yapımı · Harry Potter evreni J.K. Rowling ve Warner Bros.'a aittir</p>
   </div>
@@ -935,7 +939,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
   // seçmen şapka
   const hat = $('hat'), says = $('hatSays'), hatBtn = $('hatBtn');
-  const firstRun = ['Hmm... Zor. Çok zor.','Cesaret var, bu kesin. Gryffindor sana yakışırdı.','Sadakat de var. Hufflepuff seni hemen alırdı.','Zekâ desen ayrı. Ravenclaw kapıda bekliyor.','Biraz da inat var. Slytherin göz kırpıyor.','Ama dur... Sen zaten bir yere yerleşmişsin. Hem de çok derine.'];
+  const firstRun = ['Hmm... Difficult. Very difficult.','Cesaret var, bu kesin. Gryffindor sana yakışırdı.','Sadakat de var. Hufflepuff seni hemen alırdı.','Zekâ desen ayrı. Ravenclaw kapıda bekliyor.','Biraz da inat var. Slytherin göz kırpıyor.','Ama dur... Sen zaten bir yere yerleşmişsin. Hem de çok derine.'];
   const againRun = ['Yine mi? Peki, bir daha bakalım...','Hmm... Hayır. Kararım değişmedi.'];
   let hatRuns = 0, hatBusy = false;
   async function speak(t, ms){ says.classList.remove('big'); says.textContent = t; hat.classList.add('talk'); await wait(ms); hat.classList.remove('talk'); await wait(250); }
@@ -1035,11 +1039,11 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 
   // bertie bott
   const FLAVORS = [
-    ['#f2c14e','Bal birası','Şanslısın. Klasik.'],
+    ['#f2c14e','Butterbeer','Şanslısın. Klasik.'],
     ['#e85d75','Çilek','Tatlı. Senin gibi.'],
     ['#6b4226','Çikolata','Güzel seçim.'],
     ['#a3c46c','Çim','Cidden çim. Özür dileriz.'],
-    ['#d9c9a3','Kulak kiri','Dumbledore da bunu yemişti. Teselli olsun.'],
+    ['#d9c9a3','Kulak kiri','“Alas! Ear wax!” Dumbledore da aynısını yaşamıştı.'],
     ['#f4f1e8','Sabun','Ağzın tertemiz oldu.'],
     ['#3f7d4a','Ispanak','Sağlıklı, en azından.'],
     ['#c0392b','Acı biber','Su iç, su.'],
