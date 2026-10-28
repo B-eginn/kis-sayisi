@@ -857,7 +857,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   // mühür
   $('seal').addEventListener('click', () => {
     $('envelope').classList.add('opened'); $('tapHint').hidden = true; $('coverSub').hidden = true;
-    setTimeout(() => { $('envelope').hidden = true; $('hpName').hidden = true; $('letter').hidden = false; requestAnimationFrame(() => window.scrollTo({top: Math.max(0, $('letter').getBoundingClientRect().top + scrollY - 14), behavior: calm ? 'auto' : 'smooth'})); }, calm ? 0 : 650);
+    setTimeout(() => { $('envelope').hidden = true; $('hpName').hidden = true; $('letter').hidden = false; requestAnimationFrame(() => window.scrollTo({top: Math.max(0, $('stage').getBoundingClientRect().top + scrollY - 14), behavior: calm ? 'auto' : 'smooth'})); }, calm ? 0 : 650);
   });
 
   // büyü ekranı
@@ -971,7 +971,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
     }
     if(p >= 1) return '<b>Tahminen Nevşehir\'e vardın.</b> Hoş geldin. Kendine iyi bak.';
     let near = STOPS[0].n; for(const s of STOPS) if(p >= s.f - .08) near = s.n;
-    return '<b>Tahminen ' + near + ' civarındasın.</b> Yolun %' + Math.round(p*100) + '\'i bitti.';
+    return '<b>Tahminen ' + near + ' civarındasın.</b> Yolun %' + Math.round(p*100) + ' kadarı geride kaldı.';
   }
   function hereIndex(p){ let k = 0; STOPS.forEach((s,i) => { if(p >= s.f - .08) k = i; }); return k; }
   let mapOpen = false, walkId = 0;
