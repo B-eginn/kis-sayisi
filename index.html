@@ -391,16 +391,47 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 @keyframes ink{from{opacity:0;filter:blur(3px);transform:translateY(4px)}to{opacity:1;filter:none;transform:none}}
 .quill{font-style:italic;font-size:16px;color:var(--ink-soft)}
 
+
+/* 3D MODELLER */
+model-viewer{display:block;background:transparent;--poster-color:transparent;--progress-bar-color:#c9a24c;--progress-bar-height:2px}
+.hat-stage{background:radial-gradient(50% 32% at 50% 26%,rgba(246,197,106,.16),transparent 70%)}
+.hat3d{width:min(280px,74vw);height:250px;transform-origin:50% 90%}
+.hat3d.talk{animation:wob .5s ease-in-out infinite alternate}
+.ball3d{position:relative;width:min(250px,66vw);height:250px}
+.ball3d model-viewer{position:absolute;inset:0;width:100%;height:100%}
+.halo3d{position:absolute;left:50%;top:44%;width:86%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(246,197,106,.42),rgba(246,197,106,0) 65%);opacity:0;transition:opacity 1s ease;pointer-events:none}
+.ball3d.glow .halo3d{opacity:1}
+.wand3d{width:120px;height:170px;margin:-14px auto 6px;transition:filter .6s ease}
+.wand3d.cast{filter:drop-shadow(0 0 10px rgba(185,215,255,.95)) drop-shadow(0 0 24px rgba(185,215,255,.5))}
+.castle3d{width:100%;height:clamp(240px,72vw,340px);transition:filter 1.4s ease}
+.finale.dark .castle3d{filter:saturate(.55)}
+.always3d{width:100%;max-width:520px}
+.always3d model-viewer{width:100%;height:clamp(170px,50vw,250px);filter:drop-shadow(0 0 18px rgba(246,197,106,.35))}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pitch{position:relative;height:340px;margin-top:18px;overflow:hidden;border-top:1px solid rgba(232,217,184,.15);border-bottom:1px solid rgba(232,217,184,.15);background:radial-gradient(60% 50% at 50% 50%,rgba(246,197,106,.07),transparent 70%)}
+#snitchMv{position:absolute;left:0;top:0;width:150px;height:110px;will-change:transform;cursor:pointer;animation:buzz .08s ease-in-out infinite alternate}
+@keyframes buzz{from{scale:1}to{scale:1.035 .965}}
+.pitch.caught #snitchMv{animation:none;transition:transform 1s cubic-bezier(.2,1,.4,1),filter .6s ease;filter:drop-shadow(0 0 16px rgba(246,197,106,.85))}
+.snitch-msg{min-height:3.4em;font-style:italic;font-size:22px;line-height:1.35;color:var(--gold-hi);margin-top:16px;text-align:center}
+.snitch-msg b{display:block;font-family:var(--display);font-style:normal;font-size:19px;letter-spacing:.1em}
+.credits{margin-top:30px;font-size:13px;line-height:1.5;opacity:.55;text-align:left;width:100%}
+.credits summary{cursor:pointer;font-family:var(--display);font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-align:center;list-style:none}
+.credits summary::-webkit-details-marker{display:none}
+.credits p{margin-top:8px;text-align:center}
+.credits ul{padding-left:18px;margin:8px 0 0}
+.credits a{color:inherit}
+
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 
 @media (prefers-reduced-motion:reduce){
-  .candle,.candle::before,.seal.pulse,.alive,.msg-pill.ping,.vow-threads,.mist,.steam path,.hat.talk,.hat.talk #hatMouth{animation:none}
+  .candle,.candle::before,.seal.pulse,.alive,.msg-pill.ping,.vow-threads,.mist,.steam path,.hat3d.talk,#snitchMv{animation:none}
   .letter,.msg-body p,.msg-body .sig,.ticket,.card{animation:none}
   #yes,#no,.t-stub,#liquid,.envelope,.brick,.ink,.lbl,.dyn,.mm,.mm-flap{transition:none}
 }
 </style>
 </head>
 <body>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 
 <canvas id="fx"></canvas>
 
@@ -652,20 +683,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
     <h2 class="title">Seçmen Şapka</h2>
     <p class="lede">Hogwarts'ta herkes bir binaya yerleştirilir. Şapkayı tak, bakalım seni nereye yerleştirecek.</p>
     <div class="hat-stage">
-      <svg class="hat" id="hat" viewBox="0 0 200 200" aria-hidden="true">
-        <defs>
-          <linearGradient id="hatG" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#8a6440"/><stop offset=".6" stop-color="#5c3f25"/><stop offset="1" stop-color="#3b2716"/></linearGradient>
-        </defs>
-        <ellipse cx="100" cy="170" rx="92" ry="20" fill="#3b2716"/>
-        <ellipse cx="100" cy="166" rx="90" ry="17" fill="#6b4a2e"/>
-        <path d="M44 164 C 52 128, 66 100, 80 72 C 90 50, 100 34, 122 24 C 138 17, 154 24, 162 38 C 148 32, 134 36, 126 48 C 118 62, 122 92, 136 120 C 146 140, 154 154, 158 164 Z" fill="url(#hatG)"/>
-        <path d="M62 140 q38 -14 80 0" fill="none" stroke="#3b2716" stroke-width="3" opacity=".6"/>
-        <path d="M74 100 q12 -10 24 0" fill="none" stroke="#2b1a0e" stroke-width="4" stroke-linecap="round"/>
-        <path d="M108 96 q12 -10 24 0" fill="none" stroke="#2b1a0e" stroke-width="4" stroke-linecap="round"/>
-        <path id="hatMouth" d="M82 126 q22 12 44 0 q-22 5 -44 0z" fill="#22140a"/>
-        <rect x="128" y="70" width="14" height="12" fill="#7a5634" transform="rotate(12 135 76)"/>
-        <path d="M127 68l2 3M131 67l2 3M135 66l2 3M139 66l1 3" stroke="#2b1a0e" stroke-width="1" transform="rotate(12 135 76)"/>
-      </svg>
+      <model-viewer class="hat3d" id="hat" src="models/secmen-sapka.glb" alt="Seçmen Şapka" loading="lazy" environment-image="neutral" exposure="1.45" shadow-intensity="0.7" shadow-softness="1" camera-orbit="15deg 80deg auto" camera-controls disable-zoom disable-pan interaction-prompt="none" auto-rotate auto-rotate-delay="0" rotation-per-second="14deg"></model-viewer>
       <p class="hat-says" id="hatSays" aria-live="polite">Hmm... Bir kafa var mı burada?</p>
       <div class="houses" aria-hidden="true">
         <span style="background:linear-gradient(90deg,var(--gryf),var(--gryf-2))"></span>
@@ -742,28 +760,24 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   </div>
 </section>
 
+<section class="night sec" id="snitch">
+  <div class="in">
+    <p class="eyebrow" style="text-align:center">Quidditch · Arayıcı denemesi</p>
+    <h2 class="title" style="text-align:center">Altın Snitch</h2>
+    <p class="lede" style="margin-inline:auto;text-align:center">Arayıcı olmak kolay değil. Snitch'i yakalamak için üstüne dokun.</p>
+    <div class="pitch" id="pitch">
+      <model-viewer id="snitchMv" src="models/snitch.glb" alt="Altın Snitch" loading="lazy" environment-image="neutral" exposure="1.15" camera-orbit="0deg 80deg auto" interaction-prompt="none" disable-zoom disable-pan></model-viewer>
+    </div>
+    <p class="snitch-msg" id="snitchMsg" aria-live="polite"></p>
+  </div>
+</section>
+
 <section class="night sec" id="kehanet">
   <div class="in">
     <p class="eyebrow" style="text-align:center">Kehanet dersi</p>
     <h2 class="title" style="text-align:center">Kristal küre</h2>
     <div class="ball-wrap">
-      <svg class="ball" id="ball" viewBox="0 0 200 200" aria-hidden="true">
-        <defs>
-          <radialGradient id="glass" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#e9ecff"/><stop offset=".45" stop-color="#8e8fd6"/><stop offset="1" stop-color="#26244f"/></radialGradient>
-          <radialGradient id="haloG"><stop offset=".55" stop-color="rgba(246,197,106,.45)"/><stop offset="1" stop-color="rgba(246,197,106,0)"/></radialGradient>
-          <filter id="blur"><feGaussianBlur stdDeviation="6"/></filter>
-          <clipPath id="ballClip"><circle cx="100" cy="92" r="70"/></clipPath>
-        </defs>
-        <circle class="halo" cx="100" cy="92" r="96" fill="url(#haloG)"/>
-        <circle cx="100" cy="92" r="70" fill="url(#glass)"/>
-        <g clip-path="url(#ballClip)" filter="url(#blur)">
-          <ellipse class="mist" cx="80" cy="100" rx="46" ry="16" fill="rgba(255,255,255,.55)"/>
-          <ellipse class="mist m2" cx="118" cy="82" rx="40" ry="13" fill="rgba(210,200,255,.6)"/>
-        </g>
-        <ellipse cx="78" cy="62" rx="20" ry="10" fill="rgba(255,255,255,.45)" transform="rotate(-25 78 62)"/>
-        <path d="M62 160h76l-10 26H72z" fill="#8a6a40" stroke="#3a2716" stroke-width="2"/>
-        <rect x="56" y="154" width="88" height="10" rx="3" fill="#a07c46" stroke="#3a2716" stroke-width="2"/>
-      </svg>
+      <div class="ball3d" id="ball"><span class="halo3d"></span><model-viewer src="models/kristal-kure.glb" alt="Ayaklı kristal küre" loading="lazy" environment-image="neutral" exposure="1" camera-orbit="0deg 78deg auto" camera-controls disable-zoom disable-pan interaction-prompt="none" auto-rotate auto-rotate-delay="0" rotation-per-second="18deg"></model-viewer></div>
     </div>
     <div class="qbox">
       <p class="q">Küre sana bir soru soruyor: Ne kadar sevildiğini biliyor musun?</p>
@@ -842,6 +856,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
     <h2 class="title">Patronus</h2>
     <p class="lede" style="margin-inline:auto">Patronus, onu çağıranın en mutlu anısından doğar. Benimkini çağırıyorum.</p>
     <canvas id="patCanvas" aria-hidden="true"></canvas>
+    <model-viewer class="wand3d" id="wand" src="models/murver-asa.glb" alt="Mürver Asa" loading="lazy" environment-image="neutral" exposure="2" orientation="80deg 0deg 0deg" camera-orbit="0deg 90deg auto" interaction-prompt="none" disable-zoom disable-pan></model-viewer>
     <button class="btn gold" id="patBtn" style="border-color:#b9cdfa;color:#dbe7ff">Expecto Patronum</button>
     <p class="pat-text" id="patText" aria-live="polite"></p>
   </div>
@@ -857,9 +872,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   </div>
   <div class="in">
     <p class="eyebrow">Son sayfa</p>
+    <model-viewer class="castle3d" id="castle" src="models/hogwarts.glb" alt="Hogwarts şatosu" loading="lazy" environment-image="neutral" exposure="0.95" shadow-intensity="0.8" camera-orbit="-30deg 72deg auto" camera-controls disable-zoom disable-pan interaction-prompt="none" auto-rotate auto-rotate-delay="0" rotation-per-second="7deg"></model-viewer>
     <p class="after" lang="en">After all this time?</p>
     <button class="spell" id="alwaysBtn">Cevapla</button>
-    <p class="always" id="always" hidden lang="en">Always.</p>
+    <div class="always3d" id="always" hidden>
+      <model-viewer src="models/always.glb" alt="Always" loading="eager" environment-image="neutral" exposure="1.25" camera-orbit="0deg 86deg auto" interaction-prompt="none" disable-zoom disable-pan></model-viewer>
+      <p class="sr-only" lang="en">Always.</p>
+    </div>
     <div id="noxArea" hidden style="display:flex;flex-direction:column;align-items:center;gap:16px">
       <p class="body" id="finaleText">Okuduğun için teşekkürler. Işıkları sen söndür.</p>
       <button class="spell" id="spell">Nox</button>
@@ -870,6 +889,18 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
       <p class="sign">Batuhan</p>
       <p class="mm">Muziplik tamamlandı.</p>
     </div>
+    <details class="credits">
+      <summary>3D model künyeleri</summary>
+      <p>Modeller web için sadeleştirildi ve sıkıştırıldı.</p>
+      <ul>
+        <li>Hogwarts şatosu: <a href="https://sketchfab.com/3d-models/hogwarts-3d-70dcec840f8444dda2974aa6a9b049e2">Ju Designer</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+        <li>Seçmen Şapka: <a href="https://sketchfab.com/3d-models/sorting-hat-fan-art-a85bee5713bc4535813ec78bdeb7b3f7">Arham Mustafa Chaudhry</a> · <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></li>
+        <li>Altın Snitch: <a href="https://sketchfab.com/3d-models/harry-potter-golden-snitch-5f16afe1102249a9bed95967ce8c0d42">Abhijit Dabhi</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+        <li>Mürver Asa: <a href="https://sketchfab.com/3d-models/the-elder-wand-efc7362a857749b3ae55fcbbba8baafb">James Allison</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+        <li>Kristal küre: <a href="https://sketchfab.com/3d-models/magic-crystal-ball-0d241e81ec6c446aafeb941492915909">terpsichore</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+        <li>Always yazısı: <a href="https://www.thingiverse.com/thing:4789881">JBark25</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+      </ul>
+    </details>
   </div>
 </footer>
 
@@ -1309,8 +1340,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   function drawPat(now){
     if(!patOn) return;
     const t = (now - patT0)/1000, w = pc.width, h = pc.height, dpr = devicePixelRatio;
-    pctx.globalCompositeOperation = 'source-over';
-    pctx.fillStyle = 'rgba(8,10,24,.3)'; pctx.fillRect(0,0,w,h);
+    pctx.globalCompositeOperation = 'destination-out';
+    pctx.fillStyle = 'rgba(0,0,0,.3)'; pctx.fillRect(0,0,w,h);
     pctx.globalCompositeOperation = 'lighter';
     for(const p of parts){
       const k = Math.max(0, Math.min(1, (t - .9 - p.d)/1.5)), e = 1 - Math.pow(1 - k, 3);
@@ -1330,8 +1361,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   }
   $('patBtn').addEventListener('click', () => {
     $('patText').textContent = '';
+    $('wand').classList.add('cast'); setTimeout(() => $('wand').classList.remove('cast'), 3400);
     if(calm){
-      targets().then(T => { const w = pc.width, h = pc.height; pctx.fillStyle = '#080a18'; pctx.fillRect(0,0,w,h); pctx.fillStyle = 'rgba(185,215,255,.8)'; T.forEach(p => { pctx.beginPath(); pctx.arc(p[0],p[1],1.3*devicePixelRatio,0,Math.PI*2); pctx.fill(); }); $('patText').textContent = 'En mutlu anılarımın çoğunda sen varsın.'; });
+      targets().then(T => { const w = pc.width, h = pc.height; pctx.clearRect(0,0,w,h); pctx.fillStyle = 'rgba(185,215,255,.8)'; T.forEach(p => { pctx.beginPath(); pctx.arc(p[0],p[1],1.3*devicePixelRatio,0,Math.PI*2); pctx.fill(); }); $('patText').textContent = 'En mutlu anılarımın çoğunda sen varsın.'; });
       return;
     }
     patronus();
@@ -1340,6 +1372,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   // final: her zaman + nox
   $('alwaysBtn').addEventListener('click', () => {
     $('alwaysBtn').hidden = true; $('always').hidden = false;
+    swayAlways();
     setTimeout(() => { $('noxArea').hidden = false; }, calm ? 0 : 1400);
   });
   const fin = $('finale'), stars = $('stars');
@@ -1357,11 +1390,66 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   }
   $('spell').addEventListener('click', () => {
     const dark = !fin.classList.contains('dark');
+    fadeExposure($('castle'), dark ? .16 : .95);
     fin.classList.toggle('dark', dark); fin.classList.toggle('lights-out', dark);
     $('spell').textContent = dark ? 'Lumos' : 'Nox';
     $('finaleText').hidden = dark;
     $('finaleEnd').hidden = !dark;
     starsOn = dark; if(dark) drawStars();
+  });
+
+
+  // 3D: always salınımı, şato ışığı, snitch
+  if(calm) document.querySelectorAll('model-viewer[auto-rotate]').forEach(m => m.removeAttribute('auto-rotate'));
+  function swayAlways(){
+    const mv = document.querySelector('#always model-viewer');
+    if(!mv || calm) return;
+    const t0 = performance.now();
+    (function f(t){ if($('always').hidden) return; mv.cameraOrbit = (Math.sin((t - t0)/1000*.7)*24).toFixed(2) + 'deg 86deg auto'; requestAnimationFrame(f); })(t0);
+  }
+  function fadeExposure(mv, to){
+    if(!mv) return;
+    const from = +mv.exposure || 1, t0 = performance.now();
+    (function f(t){ const k = calm ? 1 : Math.min(1, (t - t0)/1400); mv.exposure = from + (to - from)*k; if(k < 1) requestAnimationFrame(f); })(t0);
+  }
+  const pitch = $('pitch'), sn = $('snitchMv');
+  let snX = 30, snY = 60, tx = 160, ty = 120, snOn = false, snCaught = false, snTries = 0, snSpeed = .05, snLast = 0, snVisible = false, snT0 = 0;
+  sn.style.transform = 'translate(' + snX + 'px,' + snY + 'px)';
+  function snTarget(far){
+    const W = Math.max(10, pitch.clientWidth - 150), H = Math.max(10, pitch.clientHeight - 110);
+    let x, y, g = 0;
+    do { x = Math.random()*W; y = Math.random()*H; } while(far && Math.hypot(x - snX, y - snY) < Math.min(W, H)*.6 && ++g < 20);
+    tx = x; ty = y;
+  }
+  function snLoop(t){
+    if(snCaught || !snVisible){ snOn = false; return; }
+    if(!snT0) snT0 = t;
+    if(t - snT0 > 20000) snSpeed = Math.min(snSpeed, .025);
+    if(t - snLast > 900 + Math.random()*500){ snTarget(false); snLast = t; }
+    snX += (tx - snX)*snSpeed; snY += (ty - snY)*snSpeed;
+    sn.style.transform = 'translate(' + snX.toFixed(1) + 'px,' + (snY + Math.sin(t/120)*4).toFixed(1) + 'px) rotate(' + ((tx - snX)*.04).toFixed(2) + 'deg)';
+    requestAnimationFrame(snLoop);
+  }
+  function snStart(){ if(snOn || snCaught || calm) return; snOn = true; requestAnimationFrame(snLoop); }
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { snVisible = e.isIntersecting; if(snVisible) snStart(); }), {threshold:.2}).observe(pitch);
+  if(calm){ requestAnimationFrame(() => { snX = pitch.clientWidth/2 - 75; snY = pitch.clientHeight/2 - 55; sn.style.transform = 'translate(' + snX + 'px,' + snY + 'px)'; }); }
+  const snLines = ['Neredeyse!', 'Çok hızlı, değil mi?', 'Bir kere daha. Bu sefer olacak.'];
+  sn.addEventListener('pointerdown', e => {
+    if(snCaught) return;
+    e.preventDefault();
+    snTries++;
+    if(snTries < 3){
+      $('snitchMsg').textContent = snLines[snTries - 1];
+      snTarget(true); snSpeed = .12;
+      setTimeout(() => { snSpeed = .05 - snTries*.008; }, 700);
+      if(calm){ snX = tx; snY = ty; sn.style.transform = 'translate(' + snX + 'px,' + snY + 'px)'; }
+      return;
+    }
+    snCaught = true; pitch.classList.add('caught');
+    sn.style.transform = 'translate(' + (pitch.clientWidth/2 - 75) + 'px,' + (pitch.clientHeight/2 - 55) + 'px) scale(1.6)';
+    $('snitchMsg').innerHTML = '<b>KAPANIŞTA AÇILIRIM</b>';
+    sparks(['#e4bf4f', '#fff1c4', '#c9a24c']);
+    setTimeout(() => { $('snitchMsg').innerHTML = '<b>KAPANIŞTA AÇILIRIM</b>Yakaladın. İçinden bir not çıktı: İyi ki varsın.'; }, 2200);
   });
 
   // baykuş postası
