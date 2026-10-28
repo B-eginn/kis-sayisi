@@ -311,8 +311,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .qbox{margin-top:16px;display:flex;flex-direction:column;gap:18px}
 .qbox .q{font-family:var(--display);font-size:22px;line-height:1.3;text-align:center}
 .arena{position:relative;height:170px;border-top:1px solid rgba(232,217,184,.25);border-bottom:1px solid rgba(232,217,184,.25)}
-#yes{position:absolute;left:27%;top:50%;transform:translate(-50%,-50%) scale(var(--s,1));transition:transform .25s ease}
-#no{position:absolute;left:71%;top:50%;transform:translate(-50%,-50%);transition:left .22s ease,top .22s ease,opacity .2s ease;white-space:nowrap}
+#yes{position:absolute;z-index:2;left:27%;top:50%;transform:translate(-50%,-50%) scale(var(--s,1));transition:transform .25s ease;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+#no{position:absolute;z-index:1;left:71%;top:50%;transform:translate(-50%,-50%);transition:left .22s ease,top .22s ease,opacity .2s ease;white-space:nowrap;background:var(--night-2);font-size:11px;letter-spacing:.08em;padding:12px 14px}
 .answer{font-style:italic;font-size:28px;line-height:1.2;color:var(--gold-hi);min-height:1.2em;text-align:center}
 
 /* AMORTENTIA */
@@ -815,37 +815,6 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   </div>
 </section>
 
-<section class="parch sec" id="amortentia">
-  <div class="in">
-    <p class="eyebrow">İksir dersi · Canlı ölçüm</p>
-    <h2 class="title">Felix Felicis</h2>
-    <p class="lede">Sıvı şans. Bir yudumu bütün günü yoluna koyar. Bu şişe yolculuğun için şans topluyor.</p>
-    <div class="potion">
-      <svg viewBox="0 -40 120 220" aria-hidden="true">
-        <defs>
-          <clipPath id="flask"><path d="M48 10h24v42c22 10 38 32 38 58 0 36-28 62-50 62S10 146 10 110c0-26 16-48 38-58z"/></clipPath>
-          <linearGradient id="liq" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff5cc"/><stop offset=".4" stop-color="#f6d36b"/><stop offset=".7" stop-color="#d9a531"/><stop offset="1" stop-color="#9a6a12"/></linearGradient>
-        </defs>
-        <g class="steam"><path d="M60 0c-10-8 10-14 0-22s10-14 0-22"/><path d="M52 2c-8-8 8-12 0-20s8-12 0-20"/><path d="M68 2c-8-8 8-12 0-20s8-12 0-20"/></g>
-        <g clip-path="url(#flask)">
-          <rect x="0" y="0" width="120" height="180" fill="rgba(255,248,230,.35)"/>
-          <rect id="liquid" x="0" y="170" width="120" height="180" fill="url(#liq)"/>
-          <g id="bubbles" fill="rgba(255,250,225,.75)"></g>
-        </g>
-        <path d="M48 10h24v42c22 10 38 32 38 58 0 36-28 62-50 62S10 146 10 110c0-26 16-48 38-58z" fill="none" stroke="#2d1f14" stroke-width="2.5"/>
-        <rect x="44" y="2" width="32" height="10" rx="2" fill="#8a6a40" stroke="#2d1f14" stroke-width="1.5"/>
-        <path d="M30 90c-6 14-6 30 2 42" stroke="rgba(255,255,255,.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
-      </svg>
-      <div>
-        <p class="p-num" id="pNum">3</p>
-        <p class="p-meta">yüzde · <span id="pTime">00:00</span></p>
-      </div>
-    </div>
-    <p class="p-state" id="pState">İksir kaynamaya başladı.</p>
-    <p class="smell">Kullanım: yolculuk boyunca küçük yudumlarla. <b>Bol şans.</b></p>
-  </div>
-</section>
-
 <section class="night sec" id="yemin">
   <div class="in">
     <p class="eyebrow">Ateşten iplikler</p>
@@ -993,7 +962,7 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     mmLayout();
     startChapters();
     window.scrollTo(0,0);
-    startPotion(); startCardCycle();
+    startCardCycle();
     document.documentElement.style.overflow = '';
     ov.classList.add('out'); await wait(750); ov.hidden = true;
     setTimeout(showPill, 3500);
@@ -1280,10 +1249,25 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     if(done) return;
     if(e && e.cancelable) e.preventDefault();
     tries++;
-    no.style.left = (18 + Math.random()*64) + '%'; no.style.top = (22 + Math.random()*56) + '%';
     no.textContent = noLines[Math.min(tries-1, noLines.length-1)];
     yes.style.setProperty('--s', Math.min(1 + tries*0.14, 1.8));
+    placeNo();
     if(tries >= 7){ no.style.opacity = '0'; no.disabled = true; answer.textContent = 'Hayır butonu kayboldu. Küre söylüyor: çok.'; $('ball').classList.add('glow'); }
+  }
+  function placeNo(){
+    const A = no.parentElement.getBoundingClientRect(), nw = no.offsetWidth, nh = no.offsetHeight;
+    const s = Math.min(1 + tries*0.14, 1.8), yw = yes.offsetWidth*s, yh = yes.offsetHeight*s;
+    const ycx = A.width*.27, ycy = A.height*.5;
+    const minX = nw/2 + 4, maxX = Math.max(minX, A.width - nw/2 - 4), minY = nh/2 + 4, maxY = Math.max(minY, A.height - nh/2 - 4);
+    let best = null, bestGap = -Infinity;
+    for(let k = 0; k < 30; k++){
+      const cx = minX + Math.random()*(maxX - minX), cy = minY + Math.random()*(maxY - minY);
+      const gapX = Math.abs(cx - ycx) - (nw + yw)/2, gapY = Math.abs(cy - ycy) - (nh + yh)/2;
+      const gap = Math.max(gapX, gapY);
+      if(gap > 10){ best = [cx, cy]; break; }
+      if(gap > bestGap){ bestGap = gap; best = [cx, cy]; }
+    }
+    no.style.left = (best[0]/A.width*100).toFixed(2) + '%'; no.style.top = (best[1]/A.height*100).toFixed(2) + '%';
   }
   no.addEventListener('pointerenter', e => { if(e.pointerType === 'mouse') dodge(); });
   no.addEventListener('touchstart', dodge, {passive:false});
@@ -1296,31 +1280,6 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     $('ball').classList.add('glow');
     sparks();
   });
-
-  // amortentia
-  let potionOn = false;
-  function startPotion(){
-    if(potionOn) return; potionOn = true;
-    const t0 = Date.now();
-    const states = [[0,'İksir kaynamaya başladı.'],[20,'Altın rengi koyulaşıyor.'],[50,'Yarı yoldayız. Şans birikiyor.'],[80,'Şişe ışıldamaya başladı.'],[100,'Şişe doldu. Bugün her şey yolunda gidecek.'],[130,'Şans taştı. Toroslar bile sana yol verecek.']];
-    const bub = $('bubbles');
-    function tick(){
-      const s = Math.floor((Date.now()-t0)/1000), pct = Math.round(3 + s*1.5), lvl = Math.min(pct,100);
-      $('pNum').textContent = pct > 150 ? '∞' : pct;
-      const top = 170 - lvl*1.6;
-      $('liquid').setAttribute('y', top);
-      $('pTime').textContent = String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
-      let st = states[0][1]; for(const [p,t] of states) if(pct >= p) st = t;
-      $('pState').textContent = st;
-      if(!calm && lvl > 5){
-        const c = document.createElementNS(SVGNS,'circle');
-        c.setAttribute('cx', 30 + Math.random()*60); c.setAttribute('cy', 168); c.setAttribute('r', 1.5 + Math.random()*2.5);
-        c.innerHTML = '<animate attributeName="cy" from="168" to="' + (top + 4) + '" dur="1.6s" fill="freeze"/><animate attributeName="opacity" from="1" to="0" dur="1.6s" fill="freeze"/>';
-        bub.appendChild(c); setTimeout(() => c.remove(), 1700);
-      }
-    }
-    tick(); setInterval(tick, 1000);
-  }
 
   // bozulmaz yemin
   const locked = {
@@ -1490,10 +1449,10 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   const CHAPTERS = [
     ['mektup','Baykuşla gelen mektup'],['peron','Peron Dokuz Üç Çeyrek'],['harita','Çapulcu Haritası'],['gazete','Gelecek Postası'],
     ['sapka','Seçmen Şapka'],['kurbaga','Çikolatalı Kurbağalar'],['fasulye','Bertie Bott'],['snitch','Altın Snitch'],
-    ['kehanet','Kehanet dersi'],['amortentia','Felix Felicis'],['yemin','Bozulmaz Yemin'],['hogsmeade','Hogsmeade'],
+    ['kehanet','Kehanet dersi'],['yemin','Bozulmaz Yemin'],['hogsmeade','Hogsmeade'],
     ['patronus','Patronus'],['finale','Son sayfa']
   ];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV'];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII'];
   let chaptersOn = false;
   function startChapters(){
     if(chaptersOn) return; chaptersOn = true;
