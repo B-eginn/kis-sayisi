@@ -51,7 +51,9 @@
   color-scheme: dark;
 }
 *{box-sizing:border-box}
-body{background:var(--night);color:var(--parch);font-family:var(--text);font-size:20px;line-height:1.5;overflow-x:hidden}
+html,body{overflow-x:hidden}
+body{background:var(--night);color:var(--parch);font-family:var(--text);font-size:20px;line-height:1.5}
+section,header,footer{overflow-x:clip}
 img{display:block;max-width:100%}
 h1,h2,h3{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:.04em}
 p{margin:0}
@@ -207,14 +209,14 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .np-photo .pic{aspect-ratio:4/5;max-width:100%;overflow:hidden;background:#cfc8b8}
 .np-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 36%;filter:grayscale(.9) sepia(.35) contrast(1.08) brightness(1.02)}
 .np-photo figcaption{font-style:italic;font-size:15px;margin-top:6px;text-align:center}
-.np-cols{columns:1;column-gap:22px;margin-top:20px;font-size:18px;line-height:1.5;text-align:justify;hyphens:auto}
+.np-cols{columns:1;column-gap:22px;margin-top:20px;font-size:18px;line-height:1.5;text-align:left}
 .np-cols p{margin-bottom:12px}
 .np-cols p:first-child::first-letter{font-family:var(--goth);font-weight:800;float:left;font-size:58px;line-height:.8;padding:4px 8px 0 0}
 .ads{margin-top:12px;border:3px double #1b1814;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
 .ads h3{font-family:var(--goth);font-weight:800;font-size:28px;letter-spacing:0;text-align:center}
 .ads p{font-size:16.5px;line-height:1.4;border-top:1px dotted #1b1814;padding-top:8px}
 .ads b{font-family:var(--display);font-size:12px;letter-spacing:.12em}
-@media (min-width:560px){.np-cols{columns:2}}
+@media (min-width:560px){.np-cols{columns:2;text-align:justify;hyphens:auto}}
 
 /* SEÇMEN ŞAPKA */
 .hat-stage{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:24px}
@@ -248,7 +250,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .stop.here{background:linear-gradient(90deg,rgba(124,20,36,.10),transparent)}
 
 /* ÇİKOLATA KURBAĞA */
-.frog-sec{background:radial-gradient(80% 60% at 50% 30%,rgba(110,60,150,.22),transparent 70%),var(--night)}
+.frog-sec{overflow:hidden;background:radial-gradient(80% 60% at 50% 30%,rgba(110,60,150,.22),transparent 70%),var(--night)}
 .frog-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:26px;min-height:300px}
 .box{position:relative;width:200px;height:200px;transition:opacity .5s ease,transform .5s ease}
 .box .face{position:absolute;inset:0;clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%);background:linear-gradient(160deg,#5b2f7d,#3a1a55);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:40px 30px 20px}
@@ -855,7 +857,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
   // mühür
   $('seal').addEventListener('click', () => {
     $('envelope').classList.add('opened'); $('tapHint').hidden = true; $('coverSub').hidden = true;
-    setTimeout(() => { $('envelope').hidden = true; $('hpName').hidden = true; $('letter').hidden = false; $('letter').scrollIntoView({behavior: calm ? 'auto' : 'smooth', block:'start'}); }, calm ? 0 : 650);
+    setTimeout(() => { $('envelope').hidden = true; $('hpName').hidden = true; $('letter').hidden = false; requestAnimationFrame(() => window.scrollTo({top: Math.max(0, $('letter').getBoundingClientRect().top + scrollY - 14), behavior: calm ? 'auto' : 'smooth'})); }, calm ? 0 : 650);
   });
 
   // büyü ekranı
