@@ -196,6 +196,35 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .t-stub .btn{padding:10px 14px;font-size:11px}
 .stub-msg{font-style:italic;font-size:23px;line-height:1.3;color:var(--wax);padding:16px 18px 20px}
 
+
+/* PERON 9¾: gerçek fotoğraf ve duvardan geçiş */
+.station{position:relative;width:100%;aspect-ratio:4/5;max-height:86svh;overflow:hidden;background:#0b0a10;isolation:isolate}
+.st-scene{position:absolute;inset:0}
+.st-scene img{width:100%;height:100%;object-fit:cover;display:block}
+.st-wall img{object-position:50% 55%;filter:sepia(.22) saturate(.85) brightness(.84) contrast(1.06);transform-origin:45% 68%;transition:transform 1.5s cubic-bezier(.55,0,.85,.35),filter 1.5s ease}
+.station::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 52%,rgba(11,10,16,.7)),linear-gradient(180deg,rgba(15,12,20,.6),transparent 16%,transparent 72%,rgba(15,12,20,.95))}
+.st-after{opacity:0;transition:opacity 1s ease}
+.st-after img{object-position:50% 45%;transform:scale(1.14);transition:transform 6s ease-out}
+.station.passed .st-after{opacity:1}
+.station.passed .st-after img{transform:scale(1)}
+.station.passed .st-wall,.station.passed .st-portal,.station.passed .st-btn{visibility:hidden}
+.st-cap{position:absolute;left:0;right:0;bottom:72px;z-index:4;text-align:center;font-style:italic;font-size:22px;line-height:1.3;color:var(--gold-hi);opacity:0;transform:translateY(10px);transition:opacity 1s ease .7s,transform 1s ease .7s;padding:0 22px;text-shadow:0 2px 12px rgba(0,0,0,.75)}
+.station.passed .st-cap{opacity:1;transform:none}
+.st-steam{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.6}
+.st-steam i{position:absolute;width:95%;height:45%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,250,240,.34),transparent);filter:blur(18px);animation:stsmoke 14s ease-in-out infinite alternate}
+.st-steam i:nth-child(1){left:-32%;bottom:-10%}
+.st-steam i:nth-child(2){right:-38%;bottom:4%;animation-duration:18s;animation-delay:-6s}
+.st-steam i:nth-child(3){left:8%;top:-16%;height:30%;opacity:.6;animation-duration:22s}
+@keyframes stsmoke{from{transform:translateX(-6%) scale(1)}to{transform:translateX(10%) scale(1.15)}}
+.st-portal{position:absolute;left:45%;top:68%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;z-index:2;background:radial-gradient(circle,rgba(255,236,190,.95),rgba(246,197,106,.5) 40%,transparent 70%);opacity:0;transform:scale(0);transition:transform 1.3s cubic-bezier(.6,0,.9,.4),opacity .6s ease}
+.station.run .st-portal{opacity:1;transform:scale(42)}
+.station.run .st-wall img{transform:scale(3.4);filter:sepia(.2) saturate(.8) brightness(1.3) contrast(1) blur(5px)}
+.st-flash{position:absolute;inset:0;z-index:5;background:radial-gradient(circle at 45% 68%,#fff8e6,#f6dca0 60%,#e9c27a);opacity:0;pointer-events:none;transition:opacity .35s ease}
+.station.flash .st-flash{opacity:1}
+.st-btn{position:absolute;left:50%;bottom:30px;z-index:6;transform:translateX(-50%);background:rgba(15,12,20,.72);white-space:nowrap;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:opacity .4s ease}
+.station.run .st-btn{opacity:0;pointer-events:none}
+#ticketWrap{margin-top:-44px;position:relative;z-index:2}
+
 /* GELECEK POSTASI */
 .paper{position:relative;background:#ebe6da;color:#1b1814;overflow:hidden}
 .paper::before{content:"";position:absolute;inset:0;background:url("img/parsomen.jpg") center/cover;filter:grayscale(1) brightness(1.12) contrast(.85);opacity:.5;pointer-events:none}
@@ -448,6 +477,8 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
 @media (prefers-reduced-motion:reduce){
   .candle,.candle::before,.seal.pulse,.alive,.msg-pill.ping,.vow-threads,.mist,.steam path,.hat3d.talk,#snitchMv{animation:none}
   .letter,.msg-body p,.msg-body .sig,.ticket,.card{animation:none}
+  .st-steam i{animation:none}
+  .st-wall img,.st-after img,.st-portal,.st-after{transition:none}
   #yes,#no,.t-stub,#liquid,.envelope,.brick,.ink,.lbl,.dyn,.mm,.mm-flap{transition:none}
 }
 </style>
@@ -560,14 +591,22 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   </div>
 </section>
 
-<section class="parch" id="peron">
-  <div class="train-photo"><img src="img/hogwarts-ekspresi.jpg" alt="Glenfinnan viyadüğünden geçen buharlı tren" loading="lazy"></div>
-  <div class="in sec" style="padding-top:36px">
+<section class="night" id="peron">
+  <div class="in sec" style="padding-bottom:26px">
     <p class="eyebrow">King's Cross değil, Tarsus</p>
     <h2 class="title">Peron Dokuz Üç Çeyrek</h2>
     <p class="lede">9 ile 10 numaralı peronların arasında bir duvar var. Duvara doğru yürü. Gerginsen biraz koşarak geç, en iyisi bu.</p>
-    <div class="platform-area" id="platformArea">
-      <div id="ticketWrap" hidden>
+  </div>
+  <div class="station" id="station">
+    <div class="st-scene st-wall"><img src="img/peron-934.jpg" alt="King's Cross istasyonunda Peron 9¾ tabelası ve duvara giren bagaj arabası" loading="lazy"></div>
+    <div class="st-scene st-after"><img src="img/hogwarts-ekspresi.jpg" alt="Buharlar içinde ilerleyen Hogwarts Ekspresi" loading="lazy"><p class="st-cap">Geçtin. Hogwarts Ekspresi seni bekliyor.</p></div>
+    <div class="st-steam" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="st-portal" aria-hidden="true"></div>
+    <div class="st-flash" aria-hidden="true"></div>
+    <button class="btn gold st-btn" id="wallBtn">Duvara doğru koş</button>
+  </div>
+  <div class="in" style="padding-bottom:64px">
+    <div id="ticketWrap" hidden>
         <article class="ticket" aria-label="Hogwarts Ekspresi bileti">
           <div class="t-head">
             <p class="k1">TEK YÖN · BİRİNCİ SINIF</p>
@@ -595,11 +634,6 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
           </div>
           <p class="stub-msg" id="stubMsg" hidden>Koçan bende kaldı. Yani bir parçan hep bende.</p>
         </article>
-      </div>
-      <div class="wall" id="wall">
-        <div class="sign-plate"><span>PERON</span><b>9¾</b></div>
-        <button class="btn gold wall-btn" id="wallBtn" style="background:rgba(20,15,10,.7)">Duvara doğru koş</button>
-      </div>
     </div>
   </div>
 </section>
@@ -975,30 +1009,17 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
     this.addEventListener('click', openRest);
   });
 
-  // peron 9¾: tuğla duvar
-  const wall = $('wall');
-  const shades = ['#8b3a2a','#7d3324','#94432f','#743021','#9a4a35','#863828'];
-  for(let r = 0; r < 12; r++){
-    const row = document.createElement('div'); row.className = 'brow';
-    const n = 5;
-    if(r % 2){ const h = document.createElement('span'); h.className = 'brick half'; row.appendChild(h); }
-    for(let i = 0; i < n - (r % 2 ? 1 : 0); i++){ const b = document.createElement('span'); b.className = 'brick'; row.appendChild(b); }
-    if(r % 2){ const h = document.createElement('span'); h.className = 'brick half'; row.appendChild(h); }
-    wall.insertBefore(row, wall.firstChild);
-  }
-  wall.querySelectorAll('.brick').forEach(b => b.style.setProperty('--b', shades[Math.floor(Math.random()*shades.length)]));
-  $('wallBtn').addEventListener('click', () => {
-    const wr = wall.getBoundingClientRect(), cx = wr.left + wr.width/2, cy = wr.top + wr.height/2;
-    wall.classList.add('gone');
+  // peron 9¾: duvardan geçiş
+  $('wallBtn').addEventListener('click', async () => {
+    const st = $('station');
+    if(st.classList.contains('run')) return;
+    st.classList.add('run');
+    if(calm){ st.classList.add('passed'); $('ticketWrap').hidden = false; return; }
+    buzz([15, 60, 20]);
+    await wait(1150); st.classList.add('flash');
+    await wait(380); st.classList.add('passed');
+    await wait(140); st.classList.remove('flash');
     $('ticketWrap').hidden = false;
-    wall.querySelectorAll('.brick').forEach(b => {
-      const r = b.getBoundingClientRect(), dx = (r.left + r.width/2) - cx, dy = (r.top + r.height/2) - cy, dist = Math.hypot(dx, dy);
-      b.style.transitionDelay = (dist/600) + 's';
-      b.style.transform = 'translate(' + (dx*.9) + 'px,' + (dy*.9) + 'px) scale(.15) rotate(' + (Math.random()*40-20) + 'deg)';
-      b.style.opacity = '0';
-    });
-    wall.style.transition = 'background .6s ease .3s'; wall.style.background = 'transparent'; wall.style.boxShadow = 'none';
-    setTimeout(() => { wall.hidden = true; }, calm ? 0 : 1700);
   });
 
   // koçan
