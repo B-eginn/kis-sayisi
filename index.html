@@ -526,25 +526,25 @@ const PHOTOS = [
       now.className = 'ld-now' + (cls ? ' ' + cls : ''); now.textContent = t;
       bar.style.width = Math.min(100, (++step/TOTAL)*100) + '%';
     }
-    say('Sayı hazırlanıyor…'); await wait(1300);
-    say('Okurun ne kadar sevildiği hesaplanıyor…'); await wait(1800);
+    say('Sayı hazırlanıyor…'); await wait(800);
+    say('Okurun ne kadar sevildiği hesaplanıyor…'); await wait(1200);
     const prev = now.textContent;
     now.className = 'ld-now num';
     for(let n = 0; n <= 100; n += (n < 80 ? 2 : 1)){
       now.innerHTML = '%' + n + '<small>Hesaplanıyor</small>';
-      await wait(n < 80 ? 40 : 110);
+      await wait(n < 80 ? 25 : 60);
     }
-    await wait(600);
-    now.innerHTML = '%100<small>ve hâlâ artıyor</small>'; await wait(1600);
+    await wait(300);
+    now.innerHTML = '%100<small>ve hâlâ artıyor</small>'; await wait(1100);
     { const d = document.createElement('div'); d.textContent = prev; log.appendChild(d); }
     now.textContent = '';
-    say('Hesap makinesi yetmedi, yenisi getiriliyor…'); await wait(1900);
-    say('İkinci hesap makinesi de yetmedi…'); await wait(1800);
-    say('Hata: değer çok büyük. Ölçek değiştiriliyor…'); await wait(1900);
-    say('Yeni ölçek: sonsuz.'); await wait(1600);
-    say('Sonuç: çok sevildin. Hâlâ seviliyorsun.', 'ok'); await wait(2800);
-    say('Sayfalar diziliyor…'); await wait(1200);
-    say('Hazır.', 'ok'); bar.style.width = '100%'; await wait(900);
+    say('Hesap makinesi yetmedi, yenisi getiriliyor…'); await wait(1200);
+    say('İkinci hesap makinesi de yetmedi…'); await wait(1100);
+    say('Hata: değer çok büyük. Ölçek değiştiriliyor…'); await wait(1200);
+    say('Yeni ölçek: sonsuz.'); await wait(1000);
+    say('Sonuç: çok sevildin. Hâlâ seviliyorsun.', 'ok'); await wait(2000);
+    say('Sayfalar diziliyor…'); await wait(700);
+    say('Hazır.', 'ok'); bar.style.width = '100%'; await wait(600);
     $('gate').hidden = true; $('rest').hidden = false; startBaro();
     $('icindekiler').scrollIntoView({behavior:'auto'});
     document.documentElement.style.overflow = '';
