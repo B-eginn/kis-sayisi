@@ -138,7 +138,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .ld-in{position:relative;width:100%;max-width:520px;display:flex;flex-direction:column;gap:22px}
 .ld-log{display:flex;flex-direction:column;gap:6px;min-height:7.5em;justify-content:flex-end}
 .ld-log div{font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,217,184,.45)}
-.ld-now{font-style:italic;font-size:clamp(30px,8.5vw,52px);line-height:1.1;min-height:3.3em;text-wrap:balance}
+.ld-now{font-style:italic;font-size:clamp(26px,7.2vw,46px);line-height:1.15;min-height:3.6em;text-wrap:balance}
+.ld-now .who{display:block;font-family:var(--display);font-style:normal;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .ld-now.num{font-family:var(--display);font-style:normal;font-size:clamp(90px,30vw,180px);line-height:.9;font-variant-numeric:tabular-nums;min-height:0;color:var(--gold-hi)}
 .ld-now.num small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:14px}
 .ld-now.ok{color:var(--gold-hi)}
@@ -965,27 +966,28 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   async function openRest(){
     const ov = $('loader'), log = $('ldLog'), now = $('ldNow'), bar = $('ldBar');
     ov.hidden = false; document.documentElement.style.overflow = 'hidden';
-    const TOTAL = 11; let step = 0;
-    function say(t, cls){
-      if(now.textContent && !now.classList.contains('num')){ const d = document.createElement('div'); d.textContent = now.textContent; log.appendChild(d); while(log.children.length > 4) log.firstChild.remove(); }
-      now.className = 'ld-now' + (cls ? ' ' + cls : ''); now.textContent = t;
+    const TOTAL = 6; let step = 0;
+    function say(t, cls, who){
+      if(now.dataset.line && !now.classList.contains('num')){ const d = document.createElement('div'); d.textContent = now.dataset.line; log.appendChild(d); while(log.children.length > 3) log.firstChild.remove(); }
+      now.className = 'ld-now' + (cls ? ' ' + cls : ''); now.textContent = '';
+      if(who){ const w = document.createElement('small'); w.className = 'who'; w.textContent = who; now.appendChild(w); }
+      now.appendChild(document.createTextNode(t));
+      now.dataset.line = (who ? who + ': ' : '') + t;
       bar.style.width = Math.min(100, (++step/TOTAL)*100) + '%';
     }
-    say('Asalar hazırlanıyor…'); await wait(800);
-    say('Okurun ne kadar sevildiği hesaplanıyor…'); await wait(1200);
-    const prev = now.textContent;
-    now.className = 'ld-now num';
-    for(let n = 0; n <= 100; n += (n < 80 ? 2 : 1)){ now.innerHTML = '%' + n + '<small>Hesaplanıyor</small>'; await wait(n < 80 ? 25 : 60); }
-    await wait(300);
-    now.innerHTML = '%100<small>ve hâlâ artıyor</small>'; await wait(1100);
-    { const d = document.createElement('div'); d.textContent = prev; log.appendChild(d); }
+    say('Okur tespit edildi: Lina. 21 numara, cam kenarı.', '', 'Bay Aylak'); await wait(1600);
+    say('Kulaklık takılı, yüz ciddi. Rol yapıyor.', '', 'Bay Patiayak'); await wait(1500);
+    say('Bırakın rahat etsin. Birazdan gülümser.', '', 'Bay Çatalak'); await wait(1500);
+    say('Gülümseme ölçeri açıyorum…', '', 'Bay Kılkuyruk'); await wait(900);
+    const prev = now.dataset.line;
+    now.className = 'ld-now num'; now.dataset.line = '';
+    { const c0 = performance.now(); let n = 0;
+      while(n < 100){ const e = performance.now() - c0; n = e < 1200 ? Math.round(80*e/1200) : Math.min(100, 80 + Math.round(20*(e - 1200)/900)); now.innerHTML = '%' + n + '<small>Gülümseme ölçülüyor</small>'; if(n < 100) await wait(30); } }
+    await wait(250);
+    now.innerHTML = '%100<small>Saklamaya çalışıyor, nafile</small>'; await wait(1000);
+    { const d = document.createElement('div'); d.textContent = prev; log.appendChild(d); while(log.children.length > 3) log.firstChild.remove(); }
     now.textContent = '';
-    say('Sihirli kantar yetmedi, Gringotts\'tan yenisi getiriliyor…'); await wait(1300);
-    say('İkinci kantar da yetmedi…'); await wait(1100);
-    say('Hata: değer çok büyük. Ölçek değiştiriliyor…'); await wait(1200);
-    say('Yeni ölçek: sonsuz.'); await wait(1000);
-    say('Sonuç: çok sevildin. Hâlâ seviliyorsun.', 'ok'); await wait(2000);
-    say('Merdivenler yer değiştiriyor…'); await wait(800);
+    say('Dedim size. İnkâr etmek yok.', 'ok', 'Bay Aylak'); await wait(1700);
     say('Hazır.', 'ok'); bar.style.width = '100%'; await wait(600);
     $('kapak').hidden = true; $('rest').hidden = false;
     mmLayout();
