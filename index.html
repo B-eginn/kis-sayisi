@@ -129,6 +129,55 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .letter .sig{font-family:var(--hand);font-size:34px;line-height:1;margin-top:6px}
 .letter .role{font-family:var(--display);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 
+
+/* HOGWARTS MEKTUBU: zarf (ön/arka), mum mühür, mektup */
+.env3d{position:relative;width:100%;aspect-ratio:1.45;perspective:1200px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .6s ease,transform .6s ease}
+.env3d:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+.env-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.env3d.flipped .env-inner{transform:rotateY(180deg)}
+.env-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:3px;background:#e9d8b2 url("img/parsomen.jpg") center/cover;box-shadow:0 26px 60px rgba(0,0,0,.6),inset 0 0 42px rgba(110,75,30,.38),inset 0 0 0 1px rgba(120,85,40,.25)}
+.env-back{transform:rotateY(180deg)}
+.env-front .no-stamp{position:absolute;right:7%;top:9%;left:auto;font-style:italic;font-size:11.5px;color:rgba(15,90,58,.7)}
+.addr{position:absolute;left:12%;right:6%;top:34%;display:flex;flex-direction:column;font-family:var(--hand);color:#0f5a3a;font-size:clamp(17px,5.1vw,22px);line-height:1.12;text-shadow:0 0 .4px rgba(15,90,58,.6)}
+.addr .a1{font-size:clamp(28px,8.6vw,38px);line-height:1;margin-bottom:3px}
+.addr span:nth-child(2){margin-left:6%}.addr span:nth-child(3){margin-left:12%}.addr span:nth-child(4){margin-left:18%}.addr span:nth-child(5){margin-left:24%}
+.env-back{overflow:visible;background:#d9c597 url("img/parsomen.jpg") center/cover}
+.peek{position:absolute;left:7%;right:7%;top:8%;height:76%;z-index:1;background:#efe3c6 url("img/parsomen.jpg") center/cover;box-shadow:0 2px 8px rgba(60,40,15,.25);display:grid;place-items:start center;padding-top:7%;transition:transform .85s cubic-bezier(.3,.7,.2,1)}
+.peek span{font-family:var(--hp);font-size:30px;color:#2d1f14;opacity:.75}
+.pocket{position:absolute;inset:0;z-index:2;background:#e6d3a8 url("img/parsomen.jpg") center/cover;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);box-shadow:inset 0 -18px 30px rgba(110,75,30,.2)}
+.pocket::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.6%,rgba(90,60,25,.28) 50%,transparent 50.5%) left/50% 100% no-repeat,linear-gradient(to top left,transparent 49.6%,rgba(90,60,25,.28) 50%,transparent 50.5%) right/50% 100% no-repeat}
+.flap{position:absolute;left:0;right:0;top:0;height:58%;z-index:3;background:#e2cfa3 url("img/parsomen.jpg") center/cover;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;transition:transform .7s cubic-bezier(.4,.1,.3,1);filter:drop-shadow(0 4px 4px rgba(60,40,15,.3))}
+.flap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,250,235,.12),rgba(90,60,25,.18))}
+.env3d.open .flap{transform:scaleY(-1)}
+.env3d.slide .peek{transform:translateY(-58%)}
+.wax{position:absolute;left:50%;top:58%;z-index:4;width:clamp(64px,19vw,84px);aspect-ratio:1;transform:translate(-50%,-50%);border:0;padding:0;background:none;filter:drop-shadow(0 3px 3px rgba(40,0,8,.55)) drop-shadow(0 8px 14px rgba(0,0,0,.3))}
+.wax-half{position:absolute;inset:0;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,.6,.3,1),opacity .7s ease}
+.wl{clip-path:polygon(0 0,53% 0,46% 34%,56% 58%,47% 100%,0 100%)}
+.wr{clip-path:polygon(53% 0,100% 0,100% 100%,47% 100%,56% 58%,46% 34%)}
+.env3d.flipped:not(.cracked) .wax{animation:waxpulse 2.2s ease-in-out infinite}
+@keyframes waxpulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.05)}}
+.env3d.cracked .wl{transform:translate(-16px,22px) rotate(-24deg);opacity:0}
+.env3d.cracked .wr{transform:translate(16px,26px) rotate(20deg);opacity:0}
+.env3d.gone{opacity:0;transform:translateY(24px) scale(.94);pointer-events:none}
+.letter{position:relative;background-color:#ecdfc0;background-image:linear-gradient(180deg,transparent 33%,rgba(90,60,25,.13) 33.2%,rgba(255,250,235,.25) 33.5%,transparent 33.9%,transparent 66.3%,rgba(90,60,25,.13) 66.5%,rgba(255,250,235,.25) 66.8%,transparent 67.2%),url("img/parsomen.jpg");background-size:100% 100%,cover;background-position:center;padding:34px 24px 30px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 10V6l3-2 4 2 3-3 4 2 3-3 5 3 4-2 4 3 3-4 4 2 4-1 3 3 5-4 3 3 4-2 4 3 3-3 5 2 3-3 4 3 4-2 3 2 4-3 3 3 4-1v6z'/%3E%3C/svg%3E") top/100% 12px no-repeat,linear-gradient(#000 0 0) center/100% calc(100% - 22px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0v4l4 2 3-3 4 2 4-3 3 3 5-2 3 3 4-3 4 2 3-2 5 3 3-3 4 2 3-3 5 3 4-2 3 3 4-3 4 2 3-2 4 3 3-2 5 2v-6z'/%3E%3C/svg%3E") bottom/100% 12px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 10V6l3-2 4 2 3-3 4 2 3-3 5 3 4-2 4 3 3-4 4 2 4-1 3 3 5-4 3 3 4-2 4 3 3-3 5 2 3-3 4 3 4-2 3 2 4-3 3 3 4-1v6z'/%3E%3C/svg%3E") top/100% 12px no-repeat,linear-gradient(#000 0 0) center/100% calc(100% - 22px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0v4l4 2 3-3 4 2 4-3 3 3 5-2 3 3 4-3 4 2 3-2 5 3 3-3 4 2 3-3 5 3 4-2 3 3 4-3 4 2 3-2 4 3 3-2 5 2v-6z'/%3E%3C/svg%3E") bottom/100% 12px no-repeat}
+.lt-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid rgba(124,20,36,.3)}
+.lt-crest{display:block;width:170px;max-width:52%;height:auto;margin:0 auto 8px;filter:sepia(.12) saturate(.92) drop-shadow(0 1px 1.5px rgba(60,40,15,.28))}
+.lt-school{display:flex;flex-direction:column;align-items:center;gap:0}
+.lt-school .hw{font-family:var(--hp);font-size:44px;line-height:1;color:#2a1a0e}
+.lt-school .cv{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.2em;color:var(--wax)}
+.lt-head{font-size:16px;margin-top:6px}
+.lt-head b{font-weight:600}
+.lt-titles{font-style:italic;font-size:13px;line-height:1.35;color:var(--ink-soft);max-width:30ch}
+.lt-sigblock{margin-top:4px}
+.lt-close{font-style:italic;font-size:17px}
+.letter .lt-sigblock .sig{font-family:var(--hand);font-size:40px;line-height:1;color:#0f5a3a;margin-top:4px}
+.lt-list{margin-top:10px;border-top:1px dashed rgba(45,31,20,.3);padding-top:12px}
+.lt-list-h{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--wax)}
+.lt-list ol{margin:6px 0 0;padding-left:22px;font-size:18px;line-height:1.45}
+.lt-note{font-style:italic;font-size:16px;margin-top:8px}
+.lt-ps{margin-top:14px;border-top:1px solid rgba(124,20,36,.3);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.lt-ps .q b{font-family:var(--display);color:var(--wax)}
+
 /* YÜKLEME */
 .loader{position:fixed;inset:0;z-index:30;background:#0b0a10;color:var(--parch);display:flex;align-items:center;justify-content:center;overflow:hidden;
   padding-top:calc(env(safe-area-inset-top, 0px) + 24px);padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 24px);
@@ -484,6 +533,8 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
 @media (prefers-reduced-motion:reduce){
   .candle,.candle::before,.seal.pulse,.alive,.msg-pill.ping,.vow-threads,.mist,.steam path,.hat3d.talk,#snitchMv{animation:none}
   .letter,.msg-body p,.msg-body .sig,.ticket,.card{animation:none}
+  .env-inner,.flap,.peek,.wax-half,.env3d{transition:none}
+  .env3d .wax{animation:none!important}
   .st-steam i{animation:none}
   .st-wall img,.st-after img,.st-portal,.st-after{transition:none}
   #yes,#no,.t-stub,#liquid,.envelope,.brick,.ink,.lbl,.dyn,.mm,.mm-flap{transition:none}
@@ -526,6 +577,29 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   </div>
 </div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="wxg" cx=".36" cy=".3" r=".78"><stop offset="0" stop-color="#cc3343"/><stop offset=".45" stop-color="#9c1727"/><stop offset="1" stop-color="#5c0813"/></radialGradient>
+    <radialGradient id="wxr" cx=".6" cy=".65" r=".8"><stop offset="0" stop-color="#951524"/><stop offset="1" stop-color="#6c0d1a"/></radialGradient>
+    <symbol id="crestEmb" viewBox="-60 -60 120 120">
+      <path d="M-17 -21H17V1C17 13 9 21 0 25C-9 21 -17 13 -17 1Z" fill="none" stroke="currentColor" stroke-width="2.6"/>
+      <path d="M0 -21V25M-17 1H17" stroke="currentColor" stroke-width="1.2"/>
+      <text x="0" y="9" text-anchor="middle" font-family="Cinzel, Georgia, serif" font-weight="700" font-size="25" fill="currentColor">H</text>
+    </symbol>
+    <symbol id="waxSeal" viewBox="-60 -60 120 120">
+      <path d="M52.3 0.0 C52.4 4.0 50.1 8.0 49.4 12.2 C48.7 16.4 50.1 21.7 48.2 25.3 C46.2 28.8 40.3 29.8 37.8 33.5 C35.3 37.3 36.3 45.4 33.0 47.8 C29.7 50.1 22.5 47.1 18.1 47.6 C13.6 48.1 10.3 49.8 6.2 51.0 C2.1 52.3 -2.7 55.7 -6.7 54.9 C-10.6 54.1 -13.7 48.1 -17.5 46.0 C-21.2 44.0 -26.0 44.6 -29.3 42.5 C-32.7 40.3 -34.0 35.9 -37.5 33.2 C-41.0 30.5 -47.7 29.8 -50.4 26.5 C-53.2 23.1 -53.8 17.7 -53.9 13.3 C-53.9 8.9 -51.2 4.3 -50.8 -0.0 C-50.4 -4.3 -52.1 -8.6 -51.2 -12.6 C-50.3 -16.6 -47.4 -20.1 -45.5 -23.9 C-43.7 -27.7 -42.8 -32.5 -40.1 -35.6 C-37.4 -38.6 -33.1 -40.7 -29.3 -42.5 C-25.6 -44.3 -21.4 -44.0 -17.6 -46.5 C-13.9 -48.9 -10.9 -56.4 -6.9 -57.1 C-3.0 -57.9 1.8 -52.1 6.2 -51.0 C10.5 -49.9 15.2 -51.8 19.2 -50.5 C23.1 -49.2 26.8 -46.1 29.8 -43.2 C32.8 -40.2 34.4 -36.1 37.3 -33.1 C40.2 -30.0 45.2 -28.2 47.1 -24.7 C49.1 -21.2 48.2 -16.2 49.1 -12.1 C50.0 -8.0 52.3 -4.0 52.3 0.0Z" fill="url(#wxg)"/>
+      <circle r="39" fill="url(#wxr)"/>
+      <circle r="39" fill="none" stroke="rgba(255,175,175,.32)" stroke-width="1.6" transform="translate(.9 .9)"/>
+      <circle r="39" fill="none" stroke="rgba(40,0,6,.55)" stroke-width="1.4" transform="translate(-.7 -.7)"/>
+      <circle r="34" fill="none" stroke="rgba(40,0,6,.35)" stroke-width="1" stroke-dasharray="1.6 2.6"/>
+      <use href="#crestEmb" x="-60" y="-60" width="120" height="120" transform="translate(.9 .9)" color="rgba(255,170,170,.38)"/>
+      <use href="#crestEmb" x="-60" y="-60" width="120" height="120" transform="translate(-.8 -.8)" color="rgba(35,0,5,.6)"/>
+      <use href="#crestEmb" x="-60" y="-60" width="120" height="120" color="#82111f"/>
+      <ellipse cx="-20" cy="-27" rx="17" ry="7" fill="rgba(255,255,255,.2)" transform="rotate(-32 -20 -27)"/>
+      <ellipse cx="26" cy="30" rx="10" ry="4" fill="rgba(255,255,255,.08)" transform="rotate(-32 26 30)"/>
+    </symbol>
+  </defs>
+</svg>
 <header class="cover" id="kapak">
   <div class="cover-bg"></div>
   <canvas id="snowfall" aria-hidden="true"></canvas>
@@ -543,41 +617,64 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   <div class="stage" id="stage">
     <p class="hp-name" id="hpName">Lina</p>
     <p class="cover-sub" id="coverSub">Sen bir cadısın, Lina.</p>
-    <div class="envelope" id="envelope">
-      <span class="no-stamp">Pulsuz. Baykuşla teslim edilmiştir.</span>
-      <div class="address">
-        <b>Bayan Lina</b>
-        21 Numaralı Koltuk, Cam Kenarı<br>
-        Tarsus–Nevşehir Otobüsü
+    <div class="env3d" id="env" role="button" tabindex="0" aria-label="Zarfı çevir">
+      <div class="env-inner">
+        <div class="env-face env-front">
+          <span class="no-stamp">Pulsuz. Baykuşla teslim edilmiştir.</span>
+          <div class="addr">
+            <span class="a1">Bayan Lina</span>
+            <span>21 Numaralı Koltuk, Cam Kenarı</span>
+            <span>Tarsus–Nevşehir Otobüsü</span>
+            <span>Toroslar Yolu</span>
+            <span>Mersin</span>
+          </div>
+        </div>
+        <div class="env-face env-back">
+          <div class="peek" aria-hidden="true"><span>Hogwarts</span></div>
+          <div class="pocket" aria-hidden="true"></div>
+          <div class="flap" aria-hidden="true"></div>
+          <button class="wax" id="seal" aria-label="Mührü kır ve mektubu aç">
+            <svg class="wax-half wl" viewBox="-60 -60 120 120"><use href="#waxSeal" x="-60" y="-60" width="120" height="120"/></svg>
+            <svg class="wax-half wr" viewBox="-60 -60 120 120"><use href="#waxSeal" x="-60" y="-60" width="120" height="120"/></svg>
+          </button>
+        </div>
       </div>
-      <button class="seal pulse" id="seal" aria-label="Mührü kır ve mektubu aç">H</button>
     </div>
-    <p class="tap-hint" id="tapHint">Mührü kırmak için dokun</p>
+    <p class="tap-hint" id="tapHint">Zarfı çevirmek için dokun</p>
 
     <article class="letter" id="letter" hidden>
-      <div class="crest">
-        <span class="hw">Hogwarts</span>
-        <span class="school">CADILIK VE BÜYÜCÜLÜK OKULU</span>
-        <span class="head">Müdür: Albus Dumbledore</span>
+      <div class="lt-top">
+        <img class="lt-crest" src="img/hogwarts-arma.png" alt="" width="433" height="395" decoding="async">
+        <p class="lt-school"><span class="hw">Hogwarts</span><span class="cv">CADILIK VE BÜYÜCÜLÜK OKULU</span></p>
+        <p class="lt-head">Müdür: <b>Albus Dumbledore</b></p>
+        <p class="lt-titles">(Merlin Nişanı Birinci Sınıf, Büyüceşura Baş Sihirbazı, Uluslararası Büyücüler Konfederasyonu Yüce Şahsiyeti)</p>
       </div>
       <p>Sayın Lina,</p>
-      <p>Hogwarts Ekspresi'ne kabul edildiğinizi bildirmekten mutluluk duyarız.</p>
-      <p>Ekspres, 29 Ekim Perşembe 12:30'da Tarsus'taki Peron 9¾'ten kalkacaktır. 21 numaralı cam kenarı koltuğunuz sizin için ayrılmıştır.</p>
-      <p><i>Gerekli malzemeler:</i></p>
-      <ul>
-        <li>Bir valiz</li>
-        <li>Sıcak bir atkı (bina renklerinde olabilir)</li>
-        <li>Kulaklık ve iyi bir şarkı listesi</li>
-        <li>Bu mektup</li>
-      </ul>
-      <p style="font-size:17px;font-style:italic">Öğrenciler yanlarında bir baykuş YA DA bir kedi YA DA bir kurbağa getirebilirler.</p>
-      <p class="q">Yola çıkmadan önce tek bir kural var. Kemerini taktın mı?</p>
-      <div class="row" id="gateBtns">
-        <button class="btn" id="passenger">Taktım</button>
-        <button class="btn ghost" id="driver">Takmadım</button>
+      <p>Hogwarts Ekspresi'ne kabul edildiğinizi bildirmekten mutluluk duyarız. Gerekli malzemelerin listesi aşağıda sunulmuştur.</p>
+      <p>Sefer 29 Ekim Perşembe günü saat 12:30'da Tarsus'taki Peron Dokuz Üç Çeyrek'ten başlar. 21 numaralı cam kenarı koltuğunuz sizin için ayrılmıştır.</p>
+      <div class="lt-sigblock">
+        <p class="lt-close">Saygılarımızla,</p>
+        <p class="sig">Batuhan</p>
+        <p class="role">Müdür Yardımcısı Minerva McGonagall adına</p>
       </div>
-      <p class="warn" id="driverMsg" hidden>Biliyordum. Önce kemer, sonra büyü. Bekliyorum.</p>
-      <div><p style="font-style:italic;font-size:17px">Saygılarımızla,</p><p class="sig">Batuhan</p><p class="role">Müdür Yardımcısı Minerva McGonagall adına</p></div>
+      <div class="lt-list">
+        <p class="lt-list-h">Gerekli malzemeler</p>
+        <ol>
+          <li>Bir valiz</li>
+          <li>Sıcak bir atkı (bina renklerinde olabilir)</li>
+          <li>Kulaklık ve iyi bir şarkı listesi</li>
+          <li>Bu mektup</li>
+        </ol>
+        <p class="lt-note">Öğrenciler yanlarında bir baykuş YA DA bir kedi YA DA bir kurbağa getirebilirler.</p>
+      </div>
+      <div class="lt-ps">
+        <p class="q"><b>Not:</b> Yola çıkmadan önce tek bir kural var. Kemerini taktın mı?</p>
+        <div class="row" id="gateBtns">
+          <button class="btn" id="passenger">Taktım</button>
+          <button class="btn ghost" id="driver">Takmadım</button>
+        </div>
+        <p class="warn" id="driverMsg" hidden>Biliyordum. Önce kemer, sonra büyü. Bekliyorum.</p>
+      </div>
     </article>
   </div>
 </header>
@@ -956,9 +1053,28 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
   })();
 
   // mühür
-  $('seal').addEventListener('click', () => {
-    $('envelope').classList.add('opened'); $('tapHint').hidden = true; $('coverSub').hidden = true;
-    setTimeout(() => { $('envelope').hidden = true; $('hpName').hidden = true; $('letter').hidden = false; requestAnimationFrame(() => window.scrollTo({top: Math.max(0, $('stage').getBoundingClientRect().top + scrollY - 14), behavior: calm ? 'auto' : 'smooth'})); }, calm ? 0 : 650);
+  const env = $('env'); let envState = 'front';
+  function flipEnv(){
+    if(envState !== 'front') return;
+    envState = 'back'; env.classList.add('flipped'); env.setAttribute('aria-label', 'Zarfın arkası');
+    $('tapHint').textContent = 'Mührü kırmak için dokun';
+    try{ if(!calm && navigator.vibrate) navigator.vibrate(10); }catch(e){}
+  }
+  env.addEventListener('click', e => { if(!e.target.closest('#seal')) flipEnv(); });
+  env.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); envState === 'front' ? flipEnv() : $('seal').click(); } });
+  $('seal').addEventListener('click', async e => {
+    e.stopPropagation();
+    if(envState === 'front'){ flipEnv(); return; }
+    if(envState !== 'back') return;
+    envState = 'opening';
+    try{ if(!calm && navigator.vibrate) navigator.vibrate(18); }catch(err){}
+    $('tapHint').hidden = true;
+    env.classList.add('cracked'); await wait(calm ? 0 : 520);
+    env.classList.add('open'); await wait(calm ? 0 : 620);
+    env.classList.add('slide'); await wait(calm ? 0 : 900);
+    env.classList.add('gone'); $('coverSub').hidden = true; await wait(calm ? 0 : 450);
+    env.hidden = true; $('hpName').hidden = true; $('letter').hidden = false; envState = 'done';
+    requestAnimationFrame(() => window.scrollTo({top: Math.max(0, $('stage').getBoundingClientRect().top + scrollY - 14), behavior: calm ? 'auto' : 'smooth'}));
   });
 
   // büyü ekranı
@@ -1461,7 +1577,6 @@ model-viewer{display:block;background:transparent;--poster-color:transparent;--p
 
   // AWWWARDS İLHAMI: bölümler, belirme, paralaks, ışık izi, titreşim
   const buzz = p => { try{ if(!calm && navigator.vibrate) navigator.vibrate(p); }catch(e){} };
-  $('seal').addEventListener('click', () => buzz(15));
   $('mapOpen').addEventListener('click', () => buzz(15));
   sn.addEventListener('pointerdown', () => { if(snTries >= 3) buzz([20,40,30]); });
   new MutationObserver(() => { if(says.classList.contains('big')) buzz(25); }).observe(says, {attributes:true, attributeFilter:['class']});
